@@ -1,0 +1,93 @@
+{
+  "users": [
+    {
+      "id": "user1",
+      "name": "Demo User",
+      "email": "demo@example.com",
+      "courses_progress": [
+        {
+          "course_id": "ap_calculus_ab",
+          "last_accessed": "2025-05-05T14:30:00Z",
+          "completion_percentage": 15,
+          "units_progress": [
+            {
+              "unit_id": "unit1",
+              "completion_percentage": 40,
+              "topics_progress": [
+                {
+                  "topic_id": "topic1_1",
+                  "completion_percentage": 75,
+                  "questions_attempted": ["q1_1_1", "q1_1_2"],
+                  "questions_correct": ["q1_1_1"],
+                  "time_spent_seconds": 420,
+                  "last_accessed": "2025-05-05T14:30:00Z"
+                },
+                {
+                  "topic_id": "topic1_2",
+                  "completion_percentage": 25,
+                  "questions_attempted": ["q1_2_1"],
+                  "questions_correct": [],
+                  "time_spent_seconds": 180,
+                  "last_accessed": "2025-05-04T16:45:00Z"
+                }
+              ],
+              "time_spent_seconds": 600,
+              "last_accessed": "2025-05-05T14:30:00Z"
+            },
+            {
+              "unit_id": "unit2",
+              "completion_percentage": 10,
+              "topics_progress": [
+                {
+                  "topic_id": "topic2_1",
+                  "completion_percentage": 10,
+                  "questions_attempted": ["q2_1_1"],
+                  "questions_correct": [],
+                  "time_spent_seconds": 150,
+                  "last_accessed": "2025-05-03T10:15:00Z"
+                }
+              ],
+              "time_spent_seconds": 150,
+              "last_accessed": "2025-05-03T10:15:00Z"
+            }
+          ],
+          "time_spent_seconds": 750,
+          "strengths": ["limits"],
+          "weaknesses": ["derivatives", "integrals"]
+        },
+        {
+          "course_id": "ap_biology",
+          "last_accessed": "2025-05-02T09:20:00Z",
+          "completion_percentage": 5,
+          "units_progress": [
+            {
+              "unit_id": "unit1",
+              "completion_percentage": 15,
+              "topics_progress": [
+                {
+                  "topic_id": "topic1_1",
+                  "completion_percentage": 15,
+                  "questions_attempted": ["q1_1_1"],
+                  "questions_correct": [],
+                  "time_spent_seconds": 180,
+                  "last_accessed": "2025-05-02T09:20:00Z"
+                }
+              ],
+              "time_spent_seconds": 180,
+              "last_accessed": "2025-05-02T09:20:00Z"
+            }
+          ],
+          "time_spent_seconds": 180,
+          "strengths": [],
+          "weaknesses": ["chemistry of life"]
+        }
+      ],
+      "study_streak_days": 3,
+      "total_questions_attempted": 5,
+      "total_questions_correct": 1,
+      "total_time_spent_seconds": 930,
+      "joined_date": "2025-05-01T00:00:00Z",
+      "last_login": "2025-05-05T14:30:00Z"
+    }
+  ]
+}

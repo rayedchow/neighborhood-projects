@@ -1,0 +1,151 @@
+{
+  "ap_courses": [
+    {
+      "id": "ap_calculus_ab",
+      "name": "AP Calculus AB",
+      "description": "AP Calculus AB covers limits, derivatives, and integrals.",
+      "units": [
+        {
+          "id": "unit1",
+          "name": "Limits and Continuity",
+          "topics": [
+            {
+              "id": "topic1_1",
+              "name": "Defining Limits and Using Limit Notation",
+              "questions": [
+                {
+                  "id": "q1_1_1",
+                  "question": "Evaluate the limit: \\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2}",
+                  "options": [
+                    "0",
+                    "1",
+                    "4",
+                    "Does not exist"
+                  ],
+                  "answer": 2,
+                  "explanation": "By factoring the numerator: \\frac{x^2 - 4}{x - 2} = \\frac{(x+2)(x-2)}{x-2} = x+2 for x ≠ 2. As x approaches 2, this approaches 4."
+                },
+                {
+                  "id": "q1_1_2",
+                  "question": "For what value(s) of the constant a will the function f(x) be continuous at x = 3? f(x) = \\begin{cases} ax^2 + 1, & x < 3 \\\\ 2x - a, & x \\geq 3 \\end{cases}",
+                  "options": [
+                    "a = 1",
+                    "a = 2",
+                    "a = 3",
+                    "a = 4"
+                  ],
+                  "answer": 1,
+                  "explanation": "For continuity at x = 3, we need the left and right limits to be equal: a(3)^2 + 1 = 2(3) - a. Solving: 9a + 1 = 6 - a. Therefore, 10a = 5, so a = 1/2."
+                }
+              ]
+            },
+            {
+              "id": "topic1_2",
+              "name": "Determining Limits Using Algebraic Properties",
+              "questions": [
+                {
+                  "id": "q1_2_1",
+                  "question": "Find the limit: \\lim_{x \\to 0} \\frac{\\sin(3x)}{x}",
+                  "options": [
+                    "0",
+                    "1",
+                    "3",
+                    "∞"
+                  ],
+                  "answer": 2,
+                  "explanation": "Using the limit \\lim_{x \\to 0} \\frac{\\sin(x)}{x} = 1, we have \\lim_{x \\to 0} \\frac{\\sin(3x)}{x} = \\lim_{x \\to 0} \\frac{\\sin(3x)}{3x} \\cdot 3 = 1 \\cdot 3 = 3."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit2",
+          "name": "Differentiation: Definition and Fundamental Properties",
+          "topics": [
+            {
+              "id": "topic2_1",
+              "name": "Defining the Derivative",
+              "questions": [
+                {
+                  "id": "q2_1_1",
+                  "question": "Find the derivative of f(x) = x^3 - 4x^2 + 5x - 7 at x = 2.",
+                  "options": [
+                    "-1",
+                    "1",
+                    "3",
+                    "5"
+                  ],
+                  "answer": 1,
+                  "explanation": "f'(x) = 3x^2 - 8x + 5. At x = 2: f'(2) = 3(2)^2 - 8(2) + 5 = 12 - 16 + 5 = 1."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ap_biology",
+      "name": "AP Biology",
+      "description": "AP Biology covers molecules and cells, heredity and evolution, and organisms and populations.",
+      "units": [
+        {
+          "id": "unit1",
+          "name": "Chemistry of Life",
+          "topics": [
+            {
+              "id": "topic1_1",
+              "name": "Structure of Water and Hydrogen Bonding",
+              "questions": [
+                {
+                  "id": "q1_1_1",
+                  "question": "Which property of water is a direct result of hydrogen bonding?",
+                  "options": [
+                    "Low specific heat",
+                    "High surface tension",
+                    "Low boiling point",
+                    "Non-polarity"
+                  ],
+                  "answer": 1,
+                  "explanation": "High surface tension is a direct result of hydrogen bonding between water molecules, which creates a 'skin-like' surface on water."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ap_us_history",
+      "name": "AP US History",
+      "description": "AP US History examines the cultural, economic, political, and social developments in United States history.",
+      "units": [
+        {
+          "id": "unit1",
+          "name": "Period 1: 1491-1607",
+          "topics": [
+            {
+              "id": "topic1_1",
+              "name": "Native American Societies Before European Contact",
+              "questions": [
+                {
+                  "id": "q1_1_1",
+                  "question": "Which of the following best describes the agricultural practices of Native Americans in the Eastern Woodlands before European contact?",
+                  "options": [
+                    "Nomadic hunting with no agriculture",
+                    "Intensive terrace farming",
+                    "Mixed agriculture including the Three Sisters (corn, beans, squash)",
+                    "Plantation-style monoculture"
+                  ],
+                  "answer": 2,
+                  "explanation": "Eastern Woodland Native Americans practiced mixed agriculture, with the Three Sisters (corn, beans, and squash) being central to their farming techniques."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
