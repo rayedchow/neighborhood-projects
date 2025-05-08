@@ -1,36 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { CourseService } from '@/services/courseService';
+import { UserService } from '@/services/userService';
 
 export async function GET(request: NextRequest) {
   try {
     // Get query parameters
     const searchParams = request.nextUrl.searchParams;
+    const userId = searchParams.get('userId');
     const courseId = searchParams.get('courseId');
-    const count = searchParams.get('count');
-    const unitIds = searchParams.getAll('unitId');
-    const topicIds = searchParams.getAll('topicId');
+    const limit = searchParams.get('limit');
     
-    if (!courseId) {
+    if (!userId || !courseId) {
       return NextResponse.json({
         success: false,
         data: null,
-        error: 'Missing required parameter: courseId'
+        error: 'Missing required parameters: userId and courseId'
       }, { status: 400 });
     }
     
-    // Get practice questions
-    const response = CourseService.getPracticeQuestions(
+    // Get recommendations
+    const response = UserService.getRecommendations(
+      userId,
       courseId,
-      count ? parseInt(count) : 5,
-      unitIds.length > 0 ? unitIds : undefined,
-      topicIds.length > 0 ? topicIds : undefined
+      limit ? parseInt(limit) : 5
     );
     
     return NextResponse.json(response, { 
       status: response.success ? 200 : 404 
     });
   } catch (error) {
-    console.error('Error handling GET /api/practice request:', error);
+    console.error('Error handling GET /api/recommendations request:', error);
     
     return NextResponse.json({
       success: false,

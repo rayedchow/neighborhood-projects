@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ProgressService } from '@/lib/services/progressService';
-import { UpdateProgressRequest } from '@/types';
+import { UserService } from '@/services/userService';
+import { ProgressUpdateRequest } from '@/models';
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,18 +11,14 @@ export async function POST(request: NextRequest) {
     const { userId, courseId, unitId, topicId, questionId, isCorrect, timeSpentSeconds } = requestData;
     
     if (!userId || !courseId || !unitId || !topicId || !questionId || isCorrect === undefined || !timeSpentSeconds) {
-      return NextResponse.json(
-        {
-          success: false,
-          data: null,
-          error: 'Missing required parameters',
-          timestamp: new Date().toISOString()
-        },
-        { status: 400 }
-      );
+      return NextResponse.json({
+        success: false,
+        data: null,
+        error: 'Missing required parameters'
+      }, { status: 400 });
     }
     
-    const updateRequest: UpdateProgressRequest = {
+    const updateRequest: ProgressUpdateRequest = {
       userId,
       courseId,
       unitId,
@@ -33,22 +29,18 @@ export async function POST(request: NextRequest) {
     };
     
     // Update progress
-    const response = ProgressService.updateProgress(updateRequest);
+    const response = UserService.updateProgress(updateRequest);
     
-    return NextResponse.json(response, 
-      { status: response.success ? 200 : 400 }
-    );
+    return NextResponse.json(response, { 
+      status: response.success ? 200 : 400 
+    });
   } catch (error) {
     console.error('Error handling POST /api/progress/update request:', error);
     
-    return NextResponse.json(
-      {
-        success: false,
-        data: null,
-        error: 'Internal server error',
-        timestamp: new Date().toISOString()
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      success: false,
+      data: null,
+      error: 'Internal server error'
+    }, { status: 500 });
   }
 }

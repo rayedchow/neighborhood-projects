@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { UnitsService } from '@/lib/services/unitsService';
+import { CourseService } from '@/services/courseService';
 
 export async function GET(request: NextRequest) {
   try {
@@ -8,34 +8,26 @@ export async function GET(request: NextRequest) {
     const query = searchParams.get('q');
     
     if (!query) {
-      return NextResponse.json(
-        {
-          success: false,
-          data: null,
-          error: 'Missing required parameter: q (search query)',
-          timestamp: new Date().toISOString()
-        },
-        { status: 400 }
-      );
+      return NextResponse.json({
+        success: false,
+        data: null,
+        error: 'Missing required parameter: q (search query)'
+      }, { status: 400 });
     }
     
     // Search for questions
-    const response = UnitsService.searchQuestions(query);
+    const response = CourseService.searchQuestions(query);
     
-    return NextResponse.json(response, 
-      { status: response.success ? 200 : 404 }
-    );
+    return NextResponse.json(response, { 
+      status: response.success ? 200 : 404 
+    });
   } catch (error) {
     console.error('Error handling GET /api/search request:', error);
     
-    return NextResponse.json(
-      {
-        success: false,
-        data: null,
-        error: 'Internal server error',
-        timestamp: new Date().toISOString()
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      success: false,
+      data: null,
+      error: 'Internal server error'
+    }, { status: 500 });
   }
 }
