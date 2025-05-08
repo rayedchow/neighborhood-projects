@@ -16,7 +16,7 @@ export class UnitsService {
    * Get all available AP courses
    * @returns ApiResponse containing array of Course objects with minimal data (no units)
    */
-  public static getAllCourses(): ApiResponse<Course[]> {
+  public static getAllCourses(): ApiResponse<Course[] | null> {
     try {
       const data = readUnitsData();
       
@@ -40,7 +40,7 @@ export class UnitsService {
    * @param courseId ID of the course to retrieve
    * @returns ApiResponse containing the Course object with all unit details
    */
-  public static getCourseById(courseId: string): ApiResponse<Course> {
+  public static getCourseById(courseId: string): ApiResponse<Course | null> {
     try {
       const data = readUnitsData();
       const course = data.ap_courses.find(c => c.id === courseId);
@@ -62,7 +62,7 @@ export class UnitsService {
    * @param unitId ID of the unit to retrieve
    * @returns ApiResponse containing the Unit object
    */
-  public static getUnitById(courseId: string, unitId: string): ApiResponse<Unit> {
+  public static getUnitById(courseId: string, unitId: string): ApiResponse<Unit | null> {
     try {
       const data = readUnitsData();
       const course = data.ap_courses.find(c => c.id === courseId);
@@ -91,7 +91,7 @@ export class UnitsService {
    * @param topicId ID of the topic to retrieve
    * @returns ApiResponse containing the Topic object
    */
-  public static getTopicById(courseId: string, unitId: string, topicId: string): ApiResponse<Topic> {
+  public static getTopicById(courseId: string, unitId: string, topicId: string): ApiResponse<Topic | null> {
     try {
       const data = readUnitsData();
       const course = data.ap_courses.find(c => c.id === courseId);
@@ -127,7 +127,7 @@ export class UnitsService {
    * @param questionId ID of the question to retrieve
    * @returns ApiResponse containing the Question object
    */
-  public static getQuestionById(courseId: string, unitId: string, topicId: string, questionId: string): ApiResponse<Question> {
+  public static getQuestionById(courseId: string, unitId: string, topicId: string, questionId: string): ApiResponse<Question | null> {
     try {
       const data = readUnitsData();
       const course = data.ap_courses.find(c => c.id === courseId);
@@ -156,7 +156,7 @@ export class UnitsService {
       
       return createApiResponse(true, question);
     } catch (error) {
-      console.error(`Error getting question ${questionId} from topic ${topicId}:`, error);
+      console.error(`Error getting question ${questionId} from topic ${topicId} in unit ${unitId} in course ${courseId}:`, error);
       return createApiResponse(false, null, 'Failed to retrieve question');
     }
   }
@@ -167,7 +167,7 @@ export class UnitsService {
    * @param request GetUnitDataRequest containing courseId and optional unitId and topicId
    * @returns ApiResponse containing the requested data
    */
-  public static getUnitData(request: GetUnitDataRequest): ApiResponse<Course | Unit | Topic> {
+  public static getUnitData(request: GetUnitDataRequest): ApiResponse<Course | Unit | Topic | null> {
     const { courseId, unitId, topicId } = request;
     
     try {
@@ -194,7 +194,7 @@ export class UnitsService {
    * @param query Search query string
    * @returns ApiResponse containing array of matching Question objects with metadata
    */
-  public static searchQuestions(query: string): ApiResponse<Array<Question & { courseId: string, unitId: string, topicId: string }>> {
+  public static searchQuestions(query: string): ApiResponse<Array<Question & { courseId: string, unitId: string, topicId: string }> | null> {
     try {
       const data = readUnitsData();
       const normalizedQuery = query.toLowerCase();
@@ -244,7 +244,7 @@ export class UnitsService {
     count: number = 5,
     unitIds?: string[],
     topicIds?: string[]
-  ): ApiResponse<Array<Question & { unitId: string, topicId: string }>> {
+  ): ApiResponse<Array<Question & { unitId: string, topicId: string }> | null> {
     try {
       const data = readUnitsData();
       const course = data.ap_courses.find(c => c.id === courseId);
