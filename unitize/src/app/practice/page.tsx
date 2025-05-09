@@ -1,19 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/Card';
-
-interface Question {
-  id: string;
-  question: string;
-  options: string[];
-  answer: number;
-  explanation: string;
-  unitId: string;
-  topicId: string;
-}
+import { usePracticeSession } from '@/hooks/usePracticeSession';
 
 export default function PracticePage() {
   const router = useRouter();
@@ -22,112 +12,33 @@ export default function PracticePage() {
   const courseId = searchParams.get('courseId');
   const unitId = searchParams.get('unitId');
   const topicId = searchParams.get('topicId');
-  const count = searchParams.get('count') || '5';
+  const count = searchParams.get('count') ? parseInt(searchParams.get('count')!) : 5;
   
   // Hardcoded user ID for now (in a real app, this would come from auth)
   const userId = "user1";
   
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
-  const [answerSubmitted, setAnswerSubmitted] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [startTime, setStartTime] = useState<Date>(new Date());
-  const [results, setResults] = useState<{ correct: number; total: number }>({ correct: 0, total: 0 });
-  const [practiceCompleted, setPracticeCompleted] = useState(false);
-
-  useEffect(() => {
-    async function fetchPracticeQuestions() {
-      try {
-        // Build the API URL based on the search params
-        let url = `/api/practice?courseId=${courseId}`;
-        if (unitId) url += `&unitId=${unitId}`;
-        if (topicId) url += `&topicId=${topicId}`;
-        url += `&count=${count}`;
-        
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Error ${response.status}: Failed to fetch practice questions`);
-        }
-        
-        const data = await response.json();
-        if (data.success && data.data) {
-          setQuestions(data.data);
-        } else {
-          throw new Error(data.error || 'Failed to fetch practice questions');
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An unknown error occurred');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    if (courseId) {
-      fetchPracticeQuestions();
-      setStartTime(new Date());
-    } else {
-      setError('Course ID is required to start practice');
-      setLoading(false);
-    }
-  }, [courseId, unitId, topicId, count]);
-
-  const currentQuestion = questions[currentQuestionIndex];
-
-  const handleOptionSelect = (optionIndex: number) => {
-    if (answerSubmitted) return;
-    setSelectedOptionIndex(optionIndex);
-  };
-
-  const handleSubmitAnswer = async () => {
-    if (selectedOptionIndex === null || answerSubmitted || !currentQuestion) return;
-    
-    const endTime = new Date();
-    const timeSpentSeconds = Math.floor((endTime.getTime() - startTime.getTime()) / 1000);
-    const isCorrect = selectedOptionIndex === currentQuestion.answer;
-    
-    // Update the results
-    setResults(prev => ({
-      correct: prev.correct + (isCorrect ? 1 : 0),
-      total: prev.total + 1
-    }));
-    
-    setAnswerSubmitted(true);
-    
-    // Update user progress in the backend
-    try {
-      await fetch('/api/progress/update', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userId,
-          courseId,
-          unitId: currentQuestion.unitId,
-          topicId: currentQuestion.topicId,
-          questionId: currentQuestion.id,
-          isCorrect,
-          timeSpentSeconds
-        }),
-      });
-    } catch (err) {
-      console.error('Error updating progress:', err);
-    }
-  };
-
-  const handleNextQuestion = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedOptionIndex(null);
-      setAnswerSubmitted(false);
-      setStartTime(new Date());
-    } else {
-      // Practice completed
-      setPracticeCompleted(true);
-    }
-  };
+  // Use our custom hook to manage the practice session
+  const { 
+    currentQuestion,
+    questions,
+    currentIndex,
+    selectedOption,
+    isAnswerSubmitted,
+    sessionComplete,
+    stats,
+    loading,
+    error,
+    selectOption,
+    submitAnswer,
+    nextQuestion,
+    restartSession
+  } = usePracticeSession({
+    courseId: courseId || '',
+    unitId: unitId || undefined,
+    topicId: topicId || undefined,
+    count,
+    userId
+  });
 
   if (loading) {
     return (
@@ -155,7 +66,7 @@ export default function PracticePage() {
     );
   }
 
-  if (practiceCompleted) {
+  if (sessionComplete) {
     return (
       <div className="max-w-2xl mx-auto py-10">
         <Card>
@@ -165,19 +76,19 @@ export default function PracticePage() {
           <CardContent>
             <div className="text-center py-6">
               <div className="text-5xl font-bold mb-2">
-                {results.correct} / {results.total}
+                {stats.correct} / {stats.total}
               </div>
               <p className="text-lg text-gray-600 dark:text-gray-400">
-                You answered {results.correct} out of {results.total} questions correctly.
+                You answered {stats.correct} out of {stats.total} questions correctly.
               </p>
               <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4 mt-6">
                 <div 
                   className="bg-blue-600 h-4 rounded-full" 
-                  style={{ width: `${(results.correct / results.total) * 100}%` }}
+                  style={{ width: `${stats.accuracy}%` }}
                 ></div>
               </div>
               <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                {Math.round((results.correct / results.total) * 100)}% accuracy
+                {Math.round(stats.accuracy)}% accuracy
               </p>
             </div>
           </CardContent>
@@ -190,7 +101,7 @@ export default function PracticePage() {
             </Button>
             <Button 
               variant="primary" 
-              onClick={() => window.location.reload()}
+              onClick={restartSession}
             >
               Practice Again
             </Button>
@@ -200,7 +111,7 @@ export default function PracticePage() {
     );
   }
 
-  if (questions.length === 0) {
+  if (!questions || questions.length === 0) {
     return (
       <div className="max-w-2xl mx-auto py-10 text-center">
         <Card>
@@ -223,17 +134,17 @@ export default function PracticePage() {
       <div className="mb-6 flex justify-between items-center">
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Question {currentQuestionIndex + 1} of {questions.length}
+            Question {currentIndex + 1} of {questions.length}
           </p>
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-2">
             <div 
               className="bg-blue-600 h-2 rounded-full" 
-              style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+              style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
             ></div>
           </div>
         </div>
         <div>
-          <span className="text-sm font-medium">Score: {results.correct}/{results.total}</span>
+          <span className="text-sm font-medium">Score: {stats.correct}/{stats.total}</span>
         </div>
       </div>
 
@@ -247,17 +158,17 @@ export default function PracticePage() {
               {currentQuestion.options.map((option, index) => (
                 <div 
                   key={index}
-                  onClick={() => handleOptionSelect(index)}
+                  onClick={() => selectOption(index)}
                   className={`p-4 border rounded-md cursor-pointer transition-colors ${
-                    selectedOptionIndex === index 
+                    selectedOption === index 
                       ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
                       : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'
                   } ${
-                    answerSubmitted && index === currentQuestion.answer
+                    isAnswerSubmitted && index === currentQuestion.answer
                       ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
                       : ''
                   } ${
-                    answerSubmitted && selectedOptionIndex === index && index !== currentQuestion.answer
+                    isAnswerSubmitted && selectedOption === index && index !== currentQuestion.answer
                       ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                       : ''
                   }`}
@@ -267,7 +178,7 @@ export default function PracticePage() {
               ))}
             </div>
 
-            {answerSubmitted && (
+            {isAnswerSubmitted && (
               <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md">
                 <h3 className="font-medium mb-2">Explanation:</h3>
                 <p>{currentQuestion.explanation}</p>
@@ -275,20 +186,20 @@ export default function PracticePage() {
             )}
           </CardContent>
           <CardFooter className="flex justify-end">
-            {!answerSubmitted ? (
+            {!isAnswerSubmitted ? (
               <Button 
                 variant="primary" 
-                onClick={handleSubmitAnswer} 
-                disabled={selectedOptionIndex === null}
+                onClick={submitAnswer} 
+                disabled={selectedOption === null}
               >
                 Submit Answer
               </Button>
             ) : (
               <Button 
                 variant="primary" 
-                onClick={handleNextQuestion}
+                onClick={nextQuestion}
               >
-                {currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'See Results'}
+                {currentIndex < questions.length - 1 ? 'Next Question' : 'See Results'}
               </Button>
             )}
           </CardFooter>
