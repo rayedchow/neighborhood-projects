@@ -1,11 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SearchBar } from '@/components/search/SearchBar';
+import { Button } from '@/components/ui/Button';
+import { theme } from '@/styles/theme';
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  // Check for user's dark mode preference
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    }
+  }, []);
+  
+  const toggleDarkMode = () => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.classList.toggle('dark');
+      setIsDarkMode(!isDarkMode);
+    }
+  };
   
   const navItems = [
     { name: 'Home', path: '/' },
@@ -19,28 +47,30 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 dark:bg-neutral-900/90 backdrop-blur shadow-sm' : 'bg-white dark:bg-neutral-900'} border-b border-neutral-200 dark:border-neutral-800`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="text-xl font-bold text-blue-600 dark:text-blue-400">
-                Unitize
+              <Link href="/" className="flex items-center">
+                <span className="bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text text-2xl font-bold">
+                  Unitize
+                </span>
+                <div className="ml-2 bg-primary-500 rounded-full w-3 h-3"></div>
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               {navItems.map((item) => {
                 const isActive = pathname === item.path || 
                   (item.path !== '/' && pathname?.startsWith(item.path));
-                
+                  
                 return (
                   <Link 
                     key={item.name}
                     href={item.path}
-                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                      isActive 
-                        ? 'border-blue-500 text-gray-900 dark:text-white' 
-                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-200'
+                    className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-full transition-all ${isActive
+                      ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300'
+                      : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/50 dark:hover:text-neutral-100'
                     }`}
                   >
                     {item.name}
@@ -54,30 +84,49 @@ export const Navbar: React.FC = () => {
             <SearchBar />
           </div>
           
-          <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            <button className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none">
-              <span className="sr-only">Toggle dark mode</span>
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" 
-                />
-              </svg>
+          <div className="hidden sm:ml-6 sm:flex sm:items-center space-x-3">
+            {/* Dark Mode Toggle */}
+            <button 
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100 focus:outline-none transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
             </button>
+            
+            {/* Profile Button */}
+            <Link href="/profile">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300 hover:ring-2 hover:ring-primary-300 dark:hover:ring-primary-700 transition-all cursor-pointer">
+                <span className="text-sm font-medium">U</span>
+              </div>
+            </Link>
           </div>
           
           {/* Mobile menu button */}
           <div className="-mr-2 flex items-center sm:hidden">
             <button 
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-full text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:text-neutral-200 dark:hover:bg-neutral-800 focus:outline-none transition-colors"
+              aria-label="Open main menu"
             >
               <span className="sr-only">Open main menu</span>
-              <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              {isMenuOpen ? (
+                <svg className="block h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="block h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
@@ -94,9 +143,9 @@ export const Navbar: React.FC = () => {
                   <Link 
                     key={item.name}
                     href={item.path}
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${isActive
-                      ? 'bg-blue-50 border-blue-500 text-blue-700 dark:bg-blue-900/50 dark:text-blue-200'
-                      : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800'
+                    className={`block px-4 py-2.5 rounded-lg text-base font-medium ${isActive
+                      ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300'
+                      : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-neutral-100'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -106,8 +155,30 @@ export const Navbar: React.FC = () => {
               })}
               
               {/* Mobile Search */}
-              <div className="px-3 py-2">
+              <div className="p-4 mt-2 bg-neutral-50 rounded-lg dark:bg-neutral-800/50">
                 <SearchBar />
+              </div>
+              
+              {/* Mobile actions */}
+              <div className="mt-4 px-4 py-3 flex items-center justify-between border-t border-neutral-200 dark:border-neutral-700">
+                <div className="text-sm text-neutral-500 dark:text-neutral-400">
+                  Theme
+                </div>
+                <button 
+                  onClick={toggleDarkMode}
+                  className="p-2 rounded-full bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700 focus:outline-none transition-colors"
+                  aria-label="Toggle dark mode"
+                >
+                  {isDarkMode ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                  )}
+                </button>
               </div>
             </div>
           </div>
