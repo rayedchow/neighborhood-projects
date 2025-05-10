@@ -1,23 +1,28 @@
 import { BaseRepository } from './baseRepository';
 import { Course, CourseDatabase } from '../models';
 
+// Define the actual structure of the JSON file
+interface UnitsDatabaseFile {
+  ap_courses: Course[];
+}
+
 /**
  * Repository for handling course data operations
  */
 export class CourseRepository extends BaseRepository<CourseDatabase> {
   constructor() {
     super('units.json');
-    this.ensureFileExists({ courses: [] });
+    this.ensureFileExists({ ap_courses: [] });
   }
 
   /**
    * Get all courses (without detailed units)
    */
   getAllCourses(): Course[] {
-    const data = this.readData();
+    const data = this.readData() as unknown as UnitsDatabaseFile;
     
     // Return courses with minimal data (without detailed unit content)
-    return data.courses.map(course => ({
+    return data.ap_courses.map(course => ({
       id: course.id,
       name: course.name,
       description: course.description,
@@ -29,8 +34,8 @@ export class CourseRepository extends BaseRepository<CourseDatabase> {
    * Get a specific course by ID
    */
   getCourseById(courseId: string): Course | null {
-    const data = this.readData();
-    return data.courses.find(course => course.id === courseId) || null;
+    const data = this.readData() as unknown as UnitsDatabaseFile;
+    return data.ap_courses.find(course => course.id === courseId) || null;
   }
 
   /**
@@ -79,11 +84,11 @@ export class CourseRepository extends BaseRepository<CourseDatabase> {
     unitId: string;
     topicId: string;
   }> {
-    const data = this.readData();
+    const data = this.readData() as unknown as UnitsDatabaseFile;
     const results = [];
     const lowerQuery = query.toLowerCase();
 
-    for (const course of data.courses) {
+    for (const course of data.ap_courses) {
       for (const unit of course.units) {
         for (const topic of unit.topics) {
           for (const question of topic.questions) {

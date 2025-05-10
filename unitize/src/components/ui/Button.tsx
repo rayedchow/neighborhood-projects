@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { theme } from '@/styles/theme';
 import { cva, type VariantProps } from 'class-variance-authority';

@@ -65,7 +65,7 @@ export interface User {
 
 // Database schema models
 export interface CourseDatabase {
-  courses: Course[];
+  ap_courses: Course[];
 }
 
 export interface UserDatabase {

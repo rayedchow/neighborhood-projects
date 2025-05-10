@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
@@ -55,14 +57,29 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
     setLoading(true);
     try {
-      const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+      // Use the full URL with window.location.origin for Next.js API routes
+      const baseUrl = window.location.origin;
+      const response = await fetch(`${baseUrl}/api/search?q=${encodeURIComponent(query)}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache'
+        }
+      });
+      
       if (!response.ok) {
-        throw new Error('Search failed');
+        throw new Error(`Search failed with status ${response.status}`);
       }
       
       const data = await response.json();
+      console.log('Search API response:', data);
+      
       if (data.success && data.data) {
         setResults(data.data);
+        setShowResults(true);
+      } else if (data) {
+        // Handle case where API might return data directly
+        setResults(Array.isArray(data) ? data : []);
         setShowResults(true);
       } else {
         setResults([]);

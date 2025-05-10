@@ -19,18 +19,36 @@ export default function CoursesPage() {
   useEffect(() => {
     async function fetchCourses() {
       try {
-        const response = await fetch('/api/units');
+        // In Next.js, when calling API routes from the client side,
+        // we need to use the full URL based on the current host
+        const baseUrl = window.location.origin; // Gets the base URL of the current site
+        const response = await fetch(`${baseUrl}/api/units`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache'
+          }
+        });
+        
+        console.log('Fetch response status:', response.status);
+        
         if (!response.ok) {
           throw new Error(`Error ${response.status}: Failed to fetch courses`);
         }
         
         const data = await response.json();
+        console.log('API response data:', data);
+        
         if (data.success && data.data) {
           setCourses(data.data);
+        } else if (data.error) {
+          throw new Error(data.error);
         } else {
-          throw new Error(data.error || 'Failed to fetch courses');
+          // If the API returns data directly without a success wrapper
+          setCourses(data);
         }
       } catch (err) {
+        console.error('Error fetching courses:', err);
         setError(err instanceof Error ? err.message : 'An unknown error occurred');
       } finally {
         setLoading(false);
