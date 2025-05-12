@@ -1,5 +1,6 @@
 // Design tokens for Unitize
 export const theme = {
+  // Brand identity
   colors: {
     primary: {
       50: '#eef2ff',
@@ -45,6 +46,7 @@ export const theme = {
     warning: '#f59e0b',
     info: '#3b82f6',
   },
+  // Layout and spacing
   spacing: {
     xs: '0.25rem',
     sm: '0.5rem',
@@ -63,23 +65,32 @@ export const theme = {
     display: '2rem',
     hero: '3rem',
   },
+  // Shape and form
   borderRadius: {
-    sm: '0.25rem',
-    md: '0.5rem',
-    lg: '0.75rem',
-    xl: '1rem',
+    sm: '0.125rem',
+    md: '0.25rem',
+    lg: '0.5rem',
+    xl: '0.75rem',
+    '2xl': '1rem',
+    '3xl': '1.5rem',
     full: '9999px',
   },
+  // Elevation and depth
   shadows: {
     sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
     md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
     lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
     xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+    none: 'none',
   },
-  transitions: {
-    fast: '0.15s ease-in-out',
-    normal: '0.3s ease-in-out',
-    slow: '0.5s ease-in-out',
+  // Motion and animation
+  transition: {
+    fast: 'all 0.15s ease',
+    normal: 'all 0.3s ease',
+    slow: 'all 0.5s ease',
+    bounce: 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
   },
   breakpoints: {
     sm: '640px',
@@ -94,8 +105,34 @@ export const theme = {
 export const applyGradient = (from: string, to: string, direction = '145deg') => 
   `linear-gradient(${direction}, ${from}, ${to})`;
 
+export const applyGlassmorphism = (opacity = 0.1, blur = 10) => ({
+  backgroundColor: `rgba(255, 255, 255, ${opacity})`,
+  backdropFilter: `blur(${blur}px)`,
+  WebkitBackdropFilter: `blur(${blur}px)`,
+});
+
 export const getBoxShadow = (color: string, intensity = 0.2) => 
-  `0 10px 25px -5px rgba(${hexToRgb(color)}, ${intensity})`;
+  `0 4px 14px 0 ${color}${Math.round(intensity * 255).toString(16)}`;
+
+// Modern card styles
+export const card = {
+  standard: {
+    background: 'white',
+    borderRadius: '0.75rem',
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    transition: 'all 0.3s ease',
+  },
+  hover: {
+    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    transform: 'translateY(-2px)',
+  },
+  glass: {
+    background: 'rgba(255, 255, 255, 0.15)',
+    backdropFilter: 'blur(10px)',
+    borderRadius: '0.75rem',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+  }
+};
 
 // Utility function to convert hex to RGB
 function hexToRgb(hex: string): string {

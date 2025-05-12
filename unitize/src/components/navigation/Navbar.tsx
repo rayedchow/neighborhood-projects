@@ -11,12 +11,19 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(false);
   
   // Handle scroll effect for navbar
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
+      
+      // Calculate scroll progress percentage
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollTop = window.scrollY;
+      const progress = (scrollTop / scrollHeight) * 100;
+      setScrollProgress(progress);
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -49,16 +56,23 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 dark:bg-neutral-900/90 backdrop-blur shadow-sm' : 'bg-white dark:bg-neutral-900'} border-b border-neutral-200 dark:border-neutral-800`}>
+    <nav 
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md shadow-lg' 
+          : 'bg-white dark:bg-neutral-900'
+      } border-b ${scrolled ? 'border-transparent' : 'border-neutral-200 dark:border-neutral-800'}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="flex items-center">
-                <span className="bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text text-2xl font-bold">
+                <span className="bg-gradient-to-r from-primary-500 to-secondary-500 text-transparent bg-clip-text text-2xl font-bold relative group">
                   Unitize
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 transition-all duration-300 group-hover:w-full"></span>
                 </span>
-                <div className="ml-2 bg-primary-500 rounded-full w-3 h-3"></div>
+                <div className="ml-2 bg-gradient-to-tr from-primary-500 to-secondary-500 rounded-full w-3 h-3 animate-pulse"></div>
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -70,9 +84,9 @@ export const Navbar: React.FC = () => {
                   <Link 
                     key={item.name}
                     href={item.path}
-                    className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-full transition-all ${isActive
-                      ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300'
-                      : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/50 dark:hover:text-neutral-100'
+                    className={`inline-flex items-center px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${isActive
+                      ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/40 dark:text-primary-300 shadow-sm'
+                      : 'text-neutral-600 hover:bg-neutral-50 hover:text-primary-600 hover:-translate-y-0.5 dark:text-neutral-300 dark:hover:bg-neutral-800/50 dark:hover:text-primary-300'
                     }`}
                   >
                     {item.name}
@@ -90,7 +104,7 @@ export const Navbar: React.FC = () => {
             {/* Dark Mode Toggle */}
             <button 
               onClick={toggleDarkMode}
-              className="p-2 rounded-full text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100 focus:outline-none transition-colors"
+              className="p-2 rounded-full text-neutral-500 hover:bg-neutral-100/80 hover:text-primary-600 dark:text-neutral-400 dark:hover:bg-neutral-800/80 dark:hover:text-primary-400 focus:outline-none transition-all duration-300 hover:scale-110"
               aria-label="Toggle dark mode"
             >
               {isDarkMode ? (
@@ -161,8 +175,14 @@ export const Navbar: React.FC = () => {
                 <SearchBar />
               </div>
               
+              {/* Progress bar */}
+              <div 
+                className="h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 transition-all duration-300" 
+                style={{ width: `${scrollProgress}%` }}
+              ></div>
+
               {/* Mobile actions */}
-              <div className="mt-4 px-4 py-3 flex items-center justify-between border-t border-neutral-200 dark:border-neutral-700">
+              <div className={`mt-4 px-4 py-3 flex items-center justify-between border-t border-neutral-200 dark:border-neutral-800 transition-all duration-300 ${isMenuOpen ? 'block' : 'hidden'} bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md`}>
                 <div className="text-sm text-neutral-500 dark:text-neutral-400">
                   Theme
                 </div>
@@ -185,6 +205,20 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
         )}
+        
+        {/* Sign In Button */}
+        <div className="hidden sm:ml-6 sm:flex sm:items-center space-x-3">
+          <Link href="/login">
+            <Button 
+              size="sm" 
+              variant={scrolled ? "glass" : "primary"}
+              rounded="full"
+              className="font-medium transform hover:-translate-y-1 transition-transform duration-300"
+            >
+              Sign In
+            </Button>
+          </Link>
+        </div>
       </div>
     </nav>
   );
