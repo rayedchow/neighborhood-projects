@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card';
+import { MathText } from '@/components/ui/Math';
 
 interface Question {
   id: string;
@@ -124,7 +125,7 @@ export default function TopicPage() {
                       <CardTitle className="text-lg">Question {index + 1}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="mb-4">{question.question}</p>
+                      <p className="mb-4"><MathText text={question.question} /></p>
                       <p className="text-sm text-gray-500 dark:text-gray-400 italic">
                         Start practicing to see answer options and explanations
                       </p>

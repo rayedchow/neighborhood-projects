@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
+import { MathText } from '@/components/ui/Math';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -138,7 +139,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
               onClick={() => handleResultClick(result.courseId, result.unitId, result.topicId)}
               className="p-3 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer border-b border-gray-200 dark:border-gray-700 last:border-0"
             >
-              <div className="font-medium">{result.question.question}</div>
+              <div className="font-medium"><MathText text={result.question.question} /></div>
               <div className="text-xs mt-1 text-gray-500 dark:text-gray-400">
                 Course: {result.courseId} • Unit: {result.unitId} • Topic: {result.topicId}
               </div>

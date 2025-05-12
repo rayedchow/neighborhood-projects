@@ -2,7 +2,8 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/Card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card';
+import { MathText } from '@/components/ui/Math';
 import { usePracticeSession } from '@/hooks/usePracticeSession';
 
 export default function PracticePage() {
@@ -148,14 +149,20 @@ export default function PracticePage() {
         </div>
       </div>
 
-      {currentQuestion && (
+      {currentQuestion && typeof currentQuestion === 'object' && (
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>{currentQuestion.question}</CardTitle>
+            <CardTitle>
+              {currentQuestion.question ? (
+                <MathText text={currentQuestion.question} />
+              ) : (
+                <span>Loading question...</span>
+              )}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {currentQuestion.options.map((option, index) => (
+              {currentQuestion.options && currentQuestion.options.map((option, index) => (
                 <div 
                   key={index}
                   onClick={() => selectOption(index)}
@@ -173,15 +180,15 @@ export default function PracticePage() {
                       : ''
                   }`}
                 >
-                  {option}
+                  <MathText text={option} />
                 </div>
               ))}
             </div>
 
-            {isAnswerSubmitted && (
+            {isAnswerSubmitted && currentQuestion.explanation && (
               <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md">
                 <h3 className="font-medium mb-2">Explanation:</h3>
-                <p>{currentQuestion.explanation}</p>
+                <p><MathText text={currentQuestion.explanation} /></p>
               </div>
             )}
           </CardContent>
