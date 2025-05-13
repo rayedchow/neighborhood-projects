@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useApi } from './useApi';
 
-export interface Question {
+// Define the structure of an individual question as it appears in the database
+export interface QuestionData {
   id: string;
   question: string;
   options: string[];
   answer: number;
   explanation: string;
+}
+
+// Define the structure of a question as it is returned from the API
+export interface Question {
+  question: QuestionData;
   unitId: string;
   topicId: string;
 }
@@ -66,7 +72,7 @@ export const usePracticeSession = (options: PracticeSessionOptions) => {
     
     const endTime = new Date();
     const timeSpentSeconds = Math.floor((endTime.getTime() - startTime.getTime()) / 1000);
-    const isCorrect = selectedOption === currentQuestion.answer;
+    const isCorrect = selectedOption === currentQuestion.question.answer;
     
     // Update stats
     const newStats = {
@@ -91,7 +97,7 @@ export const usePracticeSession = (options: PracticeSessionOptions) => {
           courseId,
           unitId: currentQuestion.unitId,
           topicId: currentQuestion.topicId,
-          questionId: currentQuestion.id,
+          questionId: currentQuestion.question.id,
           isCorrect,
           timeSpentSeconds
         }),

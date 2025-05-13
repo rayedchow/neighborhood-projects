@@ -153,8 +153,8 @@ export default function PracticePage() {
         <Card className="mb-8">
           <CardHeader>
             <CardTitle>
-              {currentQuestion.question ? (
-                <MathText text={currentQuestion.question} />
+              {currentQuestion.question?.question ? (
+                <MathText text={currentQuestion.question.question} />
               ) : (
                 <span>Loading question...</span>
               )}
@@ -162,7 +162,7 @@ export default function PracticePage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {currentQuestion.options && currentQuestion.options.map((option, index) => (
+              {currentQuestion.question?.options && currentQuestion.question.options.map((option, index) => (
                 <div 
                   key={index}
                   onClick={() => selectOption(index)}
@@ -171,13 +171,15 @@ export default function PracticePage() {
                       ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
                       : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'
                   } ${
-                    isAnswerSubmitted && index === currentQuestion.answer
-                      ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
-                      : ''
-                  } ${
-                    isAnswerSubmitted && selectedOption === index && index !== currentQuestion.answer
-                      ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                      : ''
+                    isAnswerSubmitted && (
+                      selectedOption === index 
+                        ? (selectedOption === currentQuestion.question.answer 
+                            ? 'border-green-500 bg-green-50 dark:bg-green-900/20' 
+                            : 'border-red-500 bg-red-50 dark:bg-red-900/20')
+                        : (index === currentQuestion.question.answer 
+                            ? 'border-green-500 bg-green-50 dark:bg-green-900/20' 
+                            : '')
+                    )
                   }`}
                 >
                   <MathText text={option} />
@@ -185,10 +187,10 @@ export default function PracticePage() {
               ))}
             </div>
 
-            {isAnswerSubmitted && currentQuestion.explanation && (
+            {isAnswerSubmitted && currentQuestion.question?.explanation && (
               <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md">
                 <h3 className="font-medium mb-2">Explanation:</h3>
-                <p><MathText text={currentQuestion.explanation} /></p>
+                <p><MathText text={currentQuestion.question.explanation} /></p>
               </div>
             )}
           </CardContent>

@@ -56,26 +56,39 @@ export const Math: React.FC<MathProps> = ({
  * Process text that might contain LaTeX expressions and render them properly
  * @param text Text potentially containing LaTeX expressions (e.g., "Solve $x^2 + 2x + 1 = 0$")
  */
-export const MathText: React.FC<{ text: string; className?: string }> = ({ 
+export const MathText: React.FC<{ text: any; className?: string }> = ({ 
   text, 
   className = '' 
 }) => {
-  // Split the text by LaTeX delimiters: $...$ for inline math
-  const parts = text.split(/(\$[^\$]+\$)/g);
+  // Safety check for undefined or null input
+  if (text === undefined || text === null) {
+    return <span className="text-yellow-500">[No content]</span>;
+  }
   
-  return (
-    <span className={className}>
-      {parts.map((part, index) => {
-        // Check if this part is a LaTeX expression (surrounded by $)
-        if (part.startsWith('$') && part.endsWith('$')) {
-          // Extract the LaTeX expression without $ symbols
-          const mathExpr = part.slice(1, -1);
-          return <Math key={index} math={mathExpr} />;
-        } else {
-          // Regular text
-          return <span key={index}>{part}</span>;
-        }
-      })}
-    </span>
-  );
+  // Ensure text is a string
+  const textStr = String(text);
+  
+  try {
+    // Split the text by LaTeX delimiters: $...$ for inline math
+    const parts = textStr.split(/(\$[^\$]+\$)/g);
+    
+    return (
+      <span className={className}>
+        {parts.map((part, index) => {
+          // Check if this part is a LaTeX expression (surrounded by $)
+          if (part && part.startsWith('$') && part.endsWith('$')) {
+            // Extract the LaTeX expression without $ symbols
+            const mathExpr = part.slice(1, -1);
+            return <Math key={index} math={mathExpr} />;
+          } else {
+            // Regular text
+            return <span key={index}>{part}</span>;
+          }
+        })}
+      </span>
+    );
+  } catch (error) {
+    console.error('Error processing math text:', error);
+    return <span className="text-gray-600">{textStr}</span>;
+  }
 };
