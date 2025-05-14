@@ -140,6 +140,175 @@
                   ],
                   "answer": 2,
                   "explanation": "Eastern Woodland Native Americans practiced mixed agriculture, with the Three Sisters (corn, beans, and squash) being central to their farming techniques."
+                },
+                {
+                  "id": "q1_1_2",
+                  "question": "The encomienda system established by the Spanish in the Americas was primarily designed to:",
+                  "options": [
+                    "Protect indigenous peoples from exploitation",
+                    "Convert Native Americans to Christianity",
+                    "Establish a labor system using indigenous workers",
+                    "Create autonomous native territories"
+                  ],
+                  "answer": 2,
+                  "explanation": "The encomienda system was established by Spanish colonizers to use indigenous labor for mining, agriculture, and other economic activities, often resulting in exploitation and harsh conditions."
+                },
+                {
+                  "id": "q1_1_3",
+                  "question": "Which of the following was a significant effect of European diseases on Native American populations?",
+                  "options": [
+                    "Minimal impact due to pre-existing immunity",
+                    "Population decline of up to 90% in some regions",
+                    "Increased birth rates to compensate for losses",
+                    "Strengthened resistance to European colonization"
+                  ],
+                  "answer": 1,
+                  "explanation": "European diseases like smallpox had devastating effects on Native American populations, causing demographic collapse with population declines of 80-90% in many regions since they had no immunity to these new diseases."
+                }
+              ]
+            },
+            {
+              "id": "topic1_2",
+              "name": "European Exploration in the Americas",
+              "questions": [
+                {
+                  "id": "q1_2_1",
+                  "question": "What was the primary motivation for Spanish exploration and colonization in the Americas during the 15th and 16th centuries?",
+                  "options": [
+                    "Scientific research",
+                    "Religious freedom",
+                    "Gold, glory, and God",
+                    "Agricultural expansion"
+                  ],
+                  "answer": 2,
+                  "explanation": "Spanish exploration was primarily motivated by the desire for wealth (particularly gold and silver), the spread of Christianity, and glory for both the Spanish crown and individual conquistadors, commonly summarized as 'Gold, glory, and God.'"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ap_psychology",
+      "name": "AP Psychology",
+      "description": "AP Psychology introduces the systematic and scientific study of human behavior and mental processes.",
+      "units": [
+        {
+          "id": "unit1",
+          "name": "Scientific Foundations of Psychology",
+          "topics": [
+            {
+              "id": "topic1_1",
+              "name": "History and Approaches",
+              "questions": [
+                {
+                  "id": "q1_1_1",
+                  "question": "The approach that emphasizes the role of the unconscious mind in shaping behavior is:",
+                  "options": [
+                    "Behaviorism",
+                    "Cognitive psychology",
+                    "Humanistic psychology",
+                    "Psychodynamic psychology"
+                  ],
+                  "answer": 3,
+                  "explanation": "Psychodynamic psychology, developed from Freud's theories, emphasizes the role of unconscious drives, conflicts, and early experiences in shaping behavior and mental processes."
+                },
+                {
+                  "id": "q1_1_2",
+                  "question": "Which of the following is NOT one of the levels of analysis used in psychology?",
+                  "options": [
+                    "Biological",
+                    "Psychological",
+                    "Environmental",
+                    "Philosophical"
+                  ],
+                  "answer": 3,
+                  "explanation": "The main levels of analysis in psychology are biological (neuroscience and physiological), psychological (cognition, memory, emotion), and environmental/social-cultural. While philosophy influenced psychology, it is not one of the standard levels of analysis."
+                }
+              ]
+            },
+            {
+              "id": "topic1_2",
+              "name": "Research Methods in Psychology",
+              "questions": [
+                {
+                  "id": "q1_2_1",
+                  "question": "In a psychology experiment, the group that receives the treatment or manipulation is called the:",
+                  "options": [
+                    "Control group",
+                    "Dependent variable",
+                    "Experimental group",
+                    "Random sample"
+                  ],
+                  "answer": 2,
+                  "explanation": "The experimental group is the group that receives the treatment or manipulation being studied, while the control group does not receive the treatment, allowing researchers to determine the effect of the independent variable."
+                },
+                {
+                  "id": "q1_2_2",
+                  "question": "Which of the following research methods is best suited for establishing cause-and-effect relationships?",
+                  "options": [
+                    "Case study",
+                    "Correlational study",
+                    "Naturalistic observation",
+                    "Controlled experiment"
+                  ],
+                  "answer": 3,
+                  "explanation": "Controlled experiments are the only research method that can establish cause-and-effect relationships because they manipulate variables while controlling for confounding factors."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit2",
+          "name": "Biological Bases of Behavior",
+          "topics": [
+            {
+              "id": "topic2_1",
+              "name": "Neural Processing and the Endocrine System",
+              "questions": [
+                {
+                  "id": "q2_1_1",
+                  "question": "Which of the following is the correct order for neural transmission?",
+                  "options": [
+                    "Axon → Cell body → Dendrites → Synapse",
+                    "Cell body → Dendrites → Axon → Synapse",
+                    "Dendrites → Cell body → Axon → Synapse",
+                    "Synapse → Dendrites → Cell body → Axon"
+                  ],
+                  "answer": 2,
+                  "explanation": "The correct order of neural transmission is: dendrites receive signals from other neurons, the cell body integrates these signals, the axon conducts the action potential away from the cell body, and finally the signal reaches the synapse where neurotransmitters are released."
+                },
+                {
+                  "id": "q2_1_2",
+                  "question": "The 'fight-or-flight' response is primarily regulated by which division of the autonomic nervous system?",
+                  "options": [
+                    "Central nervous system",
+                    "Parasympathetic nervous system",
+                    "Somatic nervous system",
+                    "Sympathetic nervous system"
+                  ],
+                  "answer": 3,
+                  "explanation": "The sympathetic nervous system regulates the 'fight-or-flight' response, which prepares the body for emergency situations by increasing heart rate, dilating airways, and redirecting blood flow to muscles."
+                }
+              ]
+            },
+            {
+              "id": "topic2_2",
+              "name": "Brain Structure and Function",
+              "questions": [
+                {
+                  "id": "q2_2_1",
+                  "question": "Damage to Broca's area would most likely result in difficulties with:",
+                  "options": [
+                    "Vision",
+                    "Speech production",
+                    "Motor coordination",
+                    "Auditory processing"
+                  ],
+                  "answer": 1,
+                  "explanation": "Broca's area is located in the frontal lobe and is primarily responsible for speech production. Damage to this area typically results in Broca's aphasia, characterized by labored, halting speech with simplified grammar but relatively intact comprehension."
                 }
               ]
             }
