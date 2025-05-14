@@ -54,10 +54,23 @@ export interface CourseProgress {
   lastAccessed: string;
 }
 
+export interface TestHistoryEntry {
+  id: string;
+  course_id: string;
+  unit_id?: string;
+  topic_id?: string;
+  date: string;
+  score: number;
+  total_questions: number;
+  correct_questions: number;
+  time_spent_seconds: number;
+}
+
 export interface User {
   id: string;
   name: string;
   email: string;
+  test_history?: TestHistoryEntry[];
   coursesProgress: CourseProgress[];
   joinedDate: string;
   lastLogin: string;
@@ -88,6 +101,17 @@ export interface ProgressUpdateRequest {
   questionId: string;
   isCorrect: boolean;
   timeSpentSeconds: number;
+}
+
+export interface TestHistoryRequest {
+  userId: string;
+  courseId: string;
+  unitId?: string;
+  topicId?: string;
+  totalQuestions: number;
+  correctQuestions: number;
+  timeSpentSeconds: number;
+  score: number;
 }
 
 export interface PracticeRequest {

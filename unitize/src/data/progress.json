@@ -4,6 +4,58 @@
       "id": "user1",
       "name": "Demo User",
       "email": "demo@example.com",
+      "test_history": [
+        {
+          "id": "test_1",
+          "course_id": "ap_calculus_ab",
+          "unit_id": "unit1",
+          "date": "2025-04-15T09:30:00Z",
+          "score": 65,
+          "total_questions": 20,
+          "correct_questions": 13,
+          "time_spent_seconds": 1800
+        },
+        {
+          "id": "test_2",
+          "course_id": "ap_calculus_ab",
+          "unit_id": "unit1",
+          "date": "2025-04-22T14:15:00Z",
+          "score": 70,
+          "total_questions": 20,
+          "correct_questions": 14,
+          "time_spent_seconds": 1750
+        },
+        {
+          "id": "test_3",
+          "course_id": "ap_calculus_ab",
+          "unit_id": "unit1",
+          "date": "2025-04-29T11:00:00Z",
+          "score": 75,
+          "total_questions": 20,
+          "correct_questions": 15,
+          "time_spent_seconds": 1680
+        },
+        {
+          "id": "test_4",
+          "course_id": "ap_calculus_ab",
+          "unit_id": "unit2",
+          "date": "2025-05-05T10:30:00Z",
+          "score": 60,
+          "total_questions": 20,
+          "correct_questions": 12,
+          "time_spent_seconds": 1850
+        },
+        {
+          "id": "test_5",
+          "course_id": "ap_us_history",
+          "unit_id": "unit1",
+          "date": "2025-05-10T15:45:00Z",
+          "score": 80,
+          "total_questions": 25,
+          "correct_questions": 20,
+          "time_spent_seconds": 2250
+        }
+      ],
       "courses_progress": [
         {
           "course_id": "ap_calculus_ab",

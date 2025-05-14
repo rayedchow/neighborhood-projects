@@ -1,5 +1,5 @@
 import { UserRepository } from '../repositories/userRepository';
-import { ApiResponse, ProgressUpdateRequest } from '../models';
+import { ApiResponse, ProgressUpdateRequest, TestHistoryRequest, TestHistoryEntry } from '../models';
 
 /**
  * Service for user progress-related operations
@@ -51,13 +51,55 @@ export class UserService {
       const stats = this.repository.getUserCourseStats(userId, courseId);
       
       if (!stats) {
-        return { success: false, data: null, error: `No stats found for user ${userId} and course ${courseId}` };
+        return { success: false, data: null, error: `Stats not found for user ${userId} and course ${courseId}` };
       }
       
       return { success: true, data: stats };
     } catch (error) {
       console.error(`Error getting stats for user ${userId} and course ${courseId}:`, error);
-      return { success: false, data: null, error: 'Failed to retrieve progress stats' };
+      return { success: false, data: null, error: 'Failed to retrieve user stats' };
+    }
+  }
+
+  /**
+   * Get user test history
+   */
+  static getTestHistory(userId: string, courseId?: string): ApiResponse<TestHistoryEntry[]> {
+    try {
+      const history = this.repository.getUserTestHistory(userId, courseId);
+      
+      if (!history) {
+        return { 
+          success: false, 
+          data: null, 
+          error: courseId
+            ? `Test history not found for user ${userId} and course ${courseId}`
+            : `Test history not found for user ${userId}`
+        };
+      }
+      
+      return { success: true, data: history };
+    } catch (error) {
+      console.error(`Error getting test history for user ${userId}:`, error);
+      return { success: false, data: null, error: 'Failed to retrieve test history' };
+    }
+  }
+  
+  /**
+   * Add a new test history entry
+   */
+  static addTestHistoryEntry(request: TestHistoryRequest): ApiResponse<TestHistoryEntry> {
+    try {
+      const newEntry = this.repository.addTestHistoryEntry(request);
+      
+      if (!newEntry) {
+        return { success: false, data: null, error: 'Failed to add test history entry' };
+      }
+      
+      return { success: true, data: newEntry };
+    } catch (error) {
+      console.error('Error adding test history entry:', error);
+      return { success: false, data: null, error: 'Failed to add test history entry' };
     }
   }
 

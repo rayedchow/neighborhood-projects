@@ -1,5 +1,6 @@
 import { BaseRepository } from './baseRepository';
-import { User, UserDatabase, QuestionAttempt, ProgressUpdateRequest } from '../models';
+import { User, UserDatabase, QuestionAttempt, ProgressUpdateRequest, TestHistoryRequest, TestHistoryEntry } from '../models';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Repository for handling user data and progress operations
@@ -100,40 +101,31 @@ export class UserRepository extends BaseRepository<UserDatabase> {
   /**
    * Get user progress stats for a specific course
    */
-  getUserCourseStats(userId: string, courseId: string): {
-    totalAttempted: number;
-    totalCorrect: number;
-    accuracyRate: number;
-    totalTimeSpent: number;
-    unitBreakdown: Array<{
-      unitId: string;
-      questionsAttempted: number;
-      questionsCorrect: number;
-      accuracyRate: number;
-    }>;
-  } | null {
+  getUserCourseStats(userId: string, courseId: string): any | null {
     const user = this.getUserById(userId);
     if (!user) return null;
 
     const courseProgress = user.coursesProgress.find(cp => cp.courseId === courseId);
     if (!courseProgress) return null;
 
+    // Calculate course-level stats
     let totalAttempted = 0;
     let totalCorrect = 0;
     let totalTimeSpent = 0;
     const unitBreakdown = [];
 
+    // Loop through all units, topics and questions to gather stats
     for (const unitProgress of courseProgress.unitsProgress) {
       let unitAttempted = 0;
       let unitCorrect = 0;
 
       for (const topicProgress of unitProgress.topicsProgress) {
-        for (const attempt of topicProgress.questionsAttempted) {
+        for (const question of topicProgress.questionsAttempted) {
           totalAttempted++;
           unitAttempted++;
-          totalTimeSpent += attempt.timeSpentSeconds;
+          totalTimeSpent += question.timeSpentSeconds;
 
-          if (attempt.isCorrect) {
+          if (question.isCorrect) {
             totalCorrect++;
             unitCorrect++;
           }
@@ -203,5 +195,63 @@ export class UserRepository extends BaseRepository<UserDatabase> {
 
     // Return the top recommendations
     return topicStats.slice(0, limit);
+  }
+
+  /**
+   * Get user's test history
+   * @param userId The user ID
+   * @param courseId Optional course ID to filter by
+   * @returns Array of test history entries or null if user not found
+   */
+  getUserTestHistory(userId: string, courseId?: string): TestHistoryEntry[] | null {
+    const user = this.getUserById(userId);
+    if (!user || !user.test_history) return null;
+    
+    // Filter by course if specified
+    if (courseId) {
+      return user.test_history.filter(entry => entry.course_id === courseId);
+    }
+    
+    return user.test_history;
+  }
+  
+  /**
+   * Add a new test history entry for a user
+   * @param request Test history data
+   * @returns The newly created test history entry or null if failed
+   */
+  addTestHistoryEntry(request: TestHistoryRequest): TestHistoryEntry | null {
+    const { userId, courseId, unitId, topicId, totalQuestions, correctQuestions, timeSpentSeconds, score } = request;
+    
+    const data = this.readData();
+    const userIndex = data.users.findIndex(u => u.id === userId);
+    
+    if (userIndex === -1) return null;
+    
+    // Create new test history entry
+    const newEntry: TestHistoryEntry = {
+      id: `test_${uuidv4().substring(0, 8)}`,
+      course_id: courseId,
+      unit_id: unitId,
+      topic_id: topicId,
+      date: new Date().toISOString(),
+      score,
+      total_questions: totalQuestions,
+      correct_questions: correctQuestions,
+      time_spent_seconds: timeSpentSeconds
+    };
+    
+    // Initialize test_history array if it doesn't exist
+    if (!data.users[userIndex].test_history) {
+      data.users[userIndex].test_history = [];
+    }
+    
+    // Add the new entry
+    data.users[userIndex].test_history.push(newEntry);
+    
+    // Save the data
+    this.writeData(data);
+    
+    return newEntry;
   }
 }
