@@ -7,15 +7,31 @@ import { useApi } from '@/hooks/useApi';
 import { Button } from '@/components/ui/Button';
 
 export default function ProfilePage() {
-  const userId = 'user1'; // Hardcoded for demo
+  const [userId, setUserId] = useState<string | null>(null);
   
   const [userData, setUserData] = useState<any>(null);
   const [recommendations, setRecommendations] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
+  // Check for authenticated user on component mount
+  useEffect(() => {
+    // Check if user is logged in via localStorage
+    const storedUserId = typeof window !== 'undefined' ? localStorage.getItem('unitize_user_id') : null;
+    
+    if (storedUserId) {
+      setUserId(storedUserId);
+    } else {
+      // Redirect to login if no user ID found
+      window.location.href = '/login';
+      return;
+    }
+  }, []);
+
   useEffect(() => {
     async function fetchData() {
+      // Only fetch data if we have a user ID
+      if (!userId) return;
       try {
         setIsLoading(true);
         // In Next.js, when calling API routes from the client side,
@@ -76,7 +92,9 @@ export default function ProfilePage() {
       }
     }
     
-    fetchData();
+    if (userId) {
+      fetchData();
+    }
   }, [userId]);
   
   // Calculate overall stats

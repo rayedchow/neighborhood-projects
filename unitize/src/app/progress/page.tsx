@@ -29,8 +29,7 @@ ChartJS.register(
 );
 
 export default function ProgressPage() {
-  // Hardcoded user ID for demo (in a real app, this would come from auth)
-  const userId = "user1";
+  const [userId, setUserId] = useState<string | null>(null);
   
   const [testHistory, setTestHistory] = useState<TestHistoryEntry[]>([]);
   const [filteredHistory, setFilteredHistory] = useState<TestHistoryEntry[]>([]);
@@ -39,6 +38,20 @@ export default function ProgressPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
+  // Check for authenticated user on component mount
+  useEffect(() => {
+    // Check if user is logged in via localStorage
+    const storedUserId = typeof window !== 'undefined' ? localStorage.getItem('unitize_user_id') : null;
+    
+    if (storedUserId) {
+      setUserId(storedUserId);
+    } else {
+      // Redirect to login if no user ID found
+      window.location.href = '/login';
+      return;
+    }
+  }, []);
+
   // Fetch all available courses
   useEffect(() => {
     const fetchCourses = async () => {
@@ -63,6 +76,7 @@ export default function ProgressPage() {
   // Fetch test history for the user
   useEffect(() => {
     const fetchHistory = async () => {
+      if (!userId) return;
       setLoading(true);
       try {
         const url = selectedCourse 
