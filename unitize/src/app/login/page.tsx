@@ -67,17 +67,21 @@ export default function LoginPage() {
 
   return (
     <div className="container mx-auto flex justify-center items-center min-h-[calc(100vh-8rem)] px-4">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-100 dark:border-gray-700 shadow-xl animate-fade-in overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-indigo-600"></div>
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">Sign In to Unitize</CardTitle>
-          <p className="text-gray-500 dark:text-gray-400 mt-2">
+          <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Sign In to Unitize</CardTitle>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">
             Continue your AP test preparation journey
           </p>
         </CardHeader>
         
         <CardContent>
           {error && (
-            <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-md">
+            <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-md border border-red-100 dark:border-red-900/30 animate-fade-in flex items-center">
+              <svg className="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
               {error}
             </div>
           )}
@@ -92,7 +96,7 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800/80 bg-white dark:bg-gray-800/80 backdrop-blur-sm transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-700"
                 placeholder="you@example.com"
               />
             </div>
@@ -106,7 +110,7 @@ export default function LoginPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800/80 bg-white dark:bg-gray-800/80 backdrop-blur-sm transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-700"
                 placeholder="••••••••"
               />
             </div>
@@ -114,10 +118,21 @@ export default function LoginPage() {
             <Button
               type="submit"
               variant="primary"
-              className="w-full"
+              className="w-full mt-2 group"
               disabled={isLoading}
+              isLoading={isLoading}
             >
-              {isLoading ? 'Signing In...' : 'Sign In'}
+              <span className="flex items-center justify-center">
+                {isLoading ? 'Signing In...' : 'Sign In'}
+                <svg 
+                  className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </span>
             </Button>
           </form>
           
@@ -136,11 +151,17 @@ export default function LoginPage() {
             <div className="mt-6">
               <Button
                 variant="secondary"
-                className="w-full"
+                className="w-full group"
                 onClick={handleDemoLogin}
                 disabled={isLoading}
+                isLoading={isLoading}
               >
-                Demo Account
+                <span className="flex items-center justify-center">
+                  <svg className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Demo Account
+                </span>
               </Button>
             </div>
           </div>
@@ -149,7 +170,7 @@ export default function LoginPage() {
         <CardFooter className="flex justify-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Don't have an account?{' '}
-            <Link href="#" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <Link href="#" className="text-blue-600 dark:text-blue-400 hover:underline font-medium transition-colors duration-200 hover:text-blue-700 dark:hover:text-blue-300">
               Sign up for free
             </Link>
           </p>
