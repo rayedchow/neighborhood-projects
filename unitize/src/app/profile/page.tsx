@@ -23,7 +23,9 @@ export default function ProfilePage() {
       setUserId(storedUserId);
     } else {
       // Redirect to login if no user ID found
-      window.location.href = '/login';
+      if (typeof window !== 'undefined') {
+        window.location.href = '/login';
+      }
       return;
     }
   }, []);
@@ -34,9 +36,10 @@ export default function ProfilePage() {
       if (!userId) return;
       try {
         setIsLoading(true);
+        setError(null); // Clear any previous errors
         // In Next.js, when calling API routes from the client side,
         // we need to use the full URL based on the current host
-        const baseUrl = window.location.origin;
+        const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
         
         // Fetch user progress data
         const progressResponse = await fetch(`${baseUrl}/api/progress?userId=${userId}`, {
@@ -124,46 +127,60 @@ export default function ProfilePage() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="w-12 h-12 rounded-full border-4 border-primary-200 border-t-primary-600 animate-spin"></div>
-          <p className="text-neutral-600 dark:text-neutral-300 text-lg">Loading your profile...</p>
-        </div>
-      </div>
-    );
-  }
-  
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center space-y-4 max-w-md mx-auto p-8">
-          <div className="w-16 h-16 mx-auto text-red-500">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
+        <div className="flex justify-center items-center h-64">
+          <div className="flex flex-col items-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-600 border-b-blue-600 shadow-md"></div>
+            <p className="mt-4 text-gray-600 dark:text-gray-400 animate-pulse">Loading your profile data...</p>
           </div>
-          <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100">Error Loading Profile</h2>
-          <p className="text-neutral-600 dark:text-neutral-300">Sorry, we couldn't load your profile data. Please try again later.</p>
-          <Button variant="primary" onClick={() => window.location.reload()}>Retry</Button>
         </div>
       </div>
     );
   }
 
+  if (error) {
+    return (
+      <Card className="mb-6 p-6 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900/30 rounded-lg shadow-md animate-fade-in">
+        <div className="flex items-start">
+          <svg className="w-6 h-6 mr-3 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <div>
+            <h3 className="text-lg font-semibold mb-2">Error Loading Profile</h3>
+            <p className="mb-4">{error}</p>
+            <Button
+              variant="primary"
+              size="sm"
+              rounded="default"
+              onClick={() => window.location.reload()}
+            >
+              <span className="flex items-center">
+                <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Try Again
+              </span>
+            </Button>
+          </div>
+        </div>
+      </Card>
+    );
+  }
+
   return (
-    <div className="container mx-auto px-4 py-20 md:py-24">
-      <div className="mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text dark:from-primary-400 dark:to-primary-500">Your Learning Profile</h1>
-        <p className="text-neutral-600 dark:text-neutral-400 text-lg">Track your progress and see personalized topic recommendations</p>
+    <div className="container mx-auto px-4 py-16 max-w-6xl">
+      <div className="relative mb-12 pb-4 border-b border-gray-200 dark:border-gray-800">
+        <h1 className="text-4xl font-bold mb-2 text-gray-900 dark:text-gray-100 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent animate-fade-in">
+          Your Profile
+        </h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-4 max-w-2xl">
+          Track your learning progress and get personalized recommendations
+        </p>
       </div>
       
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <Card 
-          variant="elevated" 
-          padding="lg"
-          className="transform transition-all hover:scale-105"
-          highlight="top"
-        >
+        <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-4px] overflow-hidden rounded-lg p-6 relative">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
           <div className="flex items-start justify-between">
             <div>
               <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400">Questions Attempted</h3>
@@ -175,14 +192,10 @@ export default function ProfilePage() {
               </svg>
             </div>
           </div>
-        </Card>
+        </div>
         
-        <Card 
-          variant="elevated" 
-          padding="lg"
-          className="transform transition-all hover:scale-105"
-          highlight="top"
-        >
+        <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-4px] overflow-hidden rounded-lg p-6 relative">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-400 to-indigo-600"></div>
           <div className="flex items-start justify-between">
             <div>
               <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400">Questions Correct</h3>
@@ -194,14 +207,10 @@ export default function ProfilePage() {
               </svg>
             </div>
           </div>
-        </Card>
+        </div>
         
-        <Card 
-          variant="elevated" 
-          padding="lg"
-          className="transform transition-all hover:scale-105"
-          highlight="top"
-        >
+        <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-4px] overflow-hidden rounded-lg p-6 relative">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-400 to-indigo-600"></div>
           <div className="flex items-start justify-between">
             <div>
               <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400">Accuracy Rate</h3>
@@ -216,7 +225,7 @@ export default function ProfilePage() {
               </svg>
             </div>
           </div>
-        </Card>
+        </div>
       </div>
       
       {/* Course Progress */}
@@ -224,8 +233,12 @@ export default function ProfilePage() {
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">Course Progress</h2>
           <Link href="/courses">
-            <Button variant="outline" size="sm">
-              View All Courses
+            <Button variant="ghost" size="sm" rounded="default">
+              <span className="flex items-center">View All Courses
+                <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </span>
             </Button>
           </Link>
         </div>

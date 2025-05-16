@@ -64,14 +64,30 @@ export const Navbar: React.FC = () => {
   // Check for user's dark mode preference
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setIsDarkMode(document.documentElement.classList.contains('dark'));
+      // Check localStorage first
+      const storedPreference = localStorage.getItem('unitize_dark_mode');
+      
+      if (storedPreference !== null) {
+        // Use stored preference if available
+        const isDark = storedPreference === 'true';
+        setIsDarkMode(isDark);
+        document.documentElement.classList.toggle('dark', isDark);
+      } else {
+        // Otherwise check system preference
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setIsDarkMode(prefersDarkMode);
+        document.documentElement.classList.toggle('dark', prefersDarkMode);
+        localStorage.setItem('unitize_dark_mode', prefersDarkMode.toString());
+      }
     }
   }, []);
 
   const toggleDarkMode = () => {
     if (typeof window !== 'undefined') {
-      document.documentElement.classList.toggle('dark');
-      setIsDarkMode(!isDarkMode);
+      const newDarkMode = !isDarkMode;
+      document.documentElement.classList.toggle('dark', newDarkMode);
+      localStorage.setItem('unitize_dark_mode', newDarkMode.toString());
+      setIsDarkMode(newDarkMode);
     }
   };
 
