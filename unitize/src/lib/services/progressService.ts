@@ -18,7 +18,7 @@ export class ProgressService {
    * @param userId ID of the user to retrieve
    * @returns ApiResponse containing the User object or error
    */
-  public static getUserById(userId: string): ApiResponse<User> {
+  public static getUserById(userId: string): ApiResponse<User | null> {
     try {
       const data = readProgressData();
       const user = data.users.find(u => u.id === userId);
@@ -39,7 +39,7 @@ export class ProgressService {
    * @param request GetUserProgressRequest containing userId and optional courseId
    * @returns ApiResponse containing user progress data
    */
-  public static getUserProgress(request: GetUserProgressRequest): ApiResponse<User | CourseProgress> {
+  public static getUserProgress(request: GetUserProgressRequest): ApiResponse<User | CourseProgress | null> {
     const { userId, courseId } = request;
     
     try {
@@ -159,7 +159,7 @@ export class ProgressService {
       }
       
       // Update completion percentages
-      this.recalculateCompletionPercentages(user);
+      ProgressService.recalculateCompletionPercentages(user);
       
       // Update aggregated stats
       unitProgress.time_spent_seconds += timeSpentSeconds;
@@ -192,13 +192,13 @@ export class ProgressService {
       ).length;
       
       // Update strengths and weaknesses
-      this.updateStrengthsAndWeaknesses(user);
+      ProgressService.updateStrengthsAndWeaknesses(user);
       
       // Update last login
       user.last_login = new Date().toISOString();
       
       // Update study streak
-      this.updateStudyStreak(user);
+      ProgressService.updateStudyStreak(user);
       
       // Save the updated data
       const success = writeProgressData(data);
@@ -220,7 +220,7 @@ export class ProgressService {
    * @param email User's email
    * @returns ApiResponse containing the created User object or error
    */
-  public static createUser(name: string, email: string): ApiResponse<User> {
+  public static createUser(name: string, email: string): ApiResponse<User | null> {
     try {
       const data = readProgressData();
       
@@ -274,7 +274,7 @@ export class ProgressService {
     userId: string,
     courseId: string,
     count: number = 3
-  ): ApiResponse<string[]> {
+  ): ApiResponse<string[] | null> {
     try {
       const data = readProgressData();
       const user = data.users.find(u => u.id === userId);
@@ -324,7 +324,7 @@ export class ProgressService {
     streak: number;
     strengths: string[];
     weaknesses: string[];
-  }> {
+  } | null> {
     try {
       const data = readProgressData();
       const user = data.users.find(u => u.id === userId);
@@ -392,7 +392,7 @@ export class ProgressService {
       };
       
       // Recalculate user stats
-      this.recalculateUserStats(user);
+      ProgressService.recalculateUserStats(user);
       
       // Save the updated data
       const success = writeProgressData(data);
@@ -558,6 +558,6 @@ export class ProgressService {
     );
     
     // Update strengths and weaknesses
-    this.updateStrengthsAndWeaknesses(user);
+    ProgressService.updateStrengthsAndWeaknesses(user);
   }
 }
