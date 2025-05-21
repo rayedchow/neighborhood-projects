@@ -71,6 +71,15 @@ export interface User {
   total_time_spent_seconds: number;
   joined_date: string;
   last_login: string;
+  metadata?: {
+    spacedRepetition?: any;
+    studyGoals?: any;
+    preferences?: {
+      theme?: string;
+      notifications?: boolean;
+      studyReminders?: boolean;
+    }
+  };
 }
 
 export interface ProgressData {

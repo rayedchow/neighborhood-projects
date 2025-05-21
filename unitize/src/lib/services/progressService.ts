@@ -414,11 +414,11 @@ export class ProgressService {
    */
   private static recalculateCompletionPercentages(user: User): void {
     // For each course
-    user.courses_progress.forEach(courseProgress => {
+    user.courses_progress.forEach((courseProgress: CourseProgress) => {
       // For each unit
-      courseProgress.units_progress.forEach(unitProgress => {
+      courseProgress.units_progress.forEach((unitProgress: UnitProgress) => {
         // For each topic
-        unitProgress.topics_progress.forEach(topicProgress => {
+        unitProgress.topics_progress.forEach((topicProgress: TopicProgress) => {
           // Calculate topic completion percentage
           if (topicProgress.questions_attempted.length > 0) {
             topicProgress.completion_percentage = 
@@ -431,7 +431,7 @@ export class ProgressService {
         // Calculate unit completion percentage (average of topics)
         if (unitProgress.topics_progress.length > 0) {
           unitProgress.completion_percentage = 
-            unitProgress.topics_progress.reduce((sum, tp) => sum + tp.completion_percentage, 0) / 
+            unitProgress.topics_progress.reduce((sum: number, tp: TopicProgress) => sum + tp.completion_percentage, 0) / 
             unitProgress.topics_progress.length;
         } else {
           unitProgress.completion_percentage = 0;
@@ -441,7 +441,7 @@ export class ProgressService {
       // Calculate course completion percentage (average of units)
       if (courseProgress.units_progress.length > 0) {
         courseProgress.completion_percentage = 
-          courseProgress.units_progress.reduce((sum, up) => sum + up.completion_percentage, 0) / 
+          courseProgress.units_progress.reduce((sum: number, up: UnitProgress) => sum + up.completion_percentage, 0) / 
           courseProgress.units_progress.length;
       } else {
         courseProgress.completion_percentage = 0;
@@ -455,17 +455,17 @@ export class ProgressService {
    */
   private static updateStrengthsAndWeaknesses(user: User): void {
     // For each course
-    user.courses_progress.forEach(courseProgress => {
+    user.courses_progress.forEach((courseProgress: CourseProgress) => {
       const unitAccuracies: { unitId: string, name: string, accuracy: number }[] = [];
       
       // Calculate accuracy for each unit
-      courseProgress.units_progress.forEach(unitProgress => {
+      courseProgress.units_progress.forEach((unitProgress: UnitProgress) => {
         const totalAttempted = unitProgress.topics_progress.reduce(
-          (sum, tp) => sum + tp.questions_attempted.length, 0
+          (sum: number, tp: TopicProgress) => sum + tp.questions_attempted.length, 0
         );
         
         const totalCorrect = unitProgress.topics_progress.reduce(
-          (sum, tp) => sum + tp.questions_correct.length, 0
+          (sum: number, tp: TopicProgress) => sum + tp.questions_correct.length, 0
         );
         
         if (totalAttempted > 0) {
@@ -554,7 +554,7 @@ export class ProgressService {
     
     // Calculate total time spent
     user.total_time_spent_seconds = user.courses_progress.reduce(
-      (sum, cp) => sum + cp.time_spent_seconds, 0
+      (sum: number, cp: CourseProgress) => sum + cp.time_spent_seconds, 0
     );
     
     // Update strengths and weaknesses
