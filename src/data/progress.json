@@ -1,0 +1,145 @@
+{
+  "users": [
+    {
+      "id": "user1",
+      "name": "Demo User",
+      "email": "demo@example.com",
+      "test_history": [
+        {
+          "id": "test_1",
+          "course_id": "ap_calculus_ab",
+          "unit_id": "unit1",
+          "date": "2025-04-15T09:30:00Z",
+          "score": 65,
+          "total_questions": 20,
+          "correct_questions": 13,
+          "time_spent_seconds": 1800
+        },
+        {
+          "id": "test_2",
+          "course_id": "ap_calculus_ab",
+          "unit_id": "unit1",
+          "date": "2025-04-22T14:15:00Z",
+          "score": 70,
+          "total_questions": 20,
+          "correct_questions": 14,
+          "time_spent_seconds": 1750
+        },
+        {
+          "id": "test_3",
+          "course_id": "ap_calculus_ab",
+          "unit_id": "unit1",
+          "date": "2025-04-29T11:00:00Z",
+          "score": 75,
+          "total_questions": 20,
+          "correct_questions": 15,
+          "time_spent_seconds": 1680
+        },
+        {
+          "id": "test_4",
+          "course_id": "ap_calculus_ab",
+          "unit_id": "unit2",
+          "date": "2025-05-05T10:30:00Z",
+          "score": 60,
+          "total_questions": 20,
+          "correct_questions": 12,
+          "time_spent_seconds": 1850
+        },
+        {
+          "id": "test_5",
+          "course_id": "ap_us_history",
+          "unit_id": "unit1",
+          "date": "2025-05-10T15:45:00Z",
+          "score": 80,
+          "total_questions": 25,
+          "correct_questions": 20,
+          "time_spent_seconds": 2250
+        }
+      ],
+      "courses_progress": [
+        {
+          "course_id": "ap_calculus_ab",
+          "last_accessed": "2025-05-05T14:30:00Z",
+          "completion_percentage": 15,
+          "units_progress": [
+            {
+              "unit_id": "unit1",
+              "completion_percentage": 40,
+              "topics_progress": [
+                {
+                  "topic_id": "topic1_1",
+                  "completion_percentage": 75,
+                  "questions_attempted": ["q1_1_1", "q1_1_2"],
+                  "questions_correct": ["q1_1_1"],
+                  "time_spent_seconds": 420,
+                  "last_accessed": "2025-05-05T14:30:00Z"
+                },
+                {
+                  "topic_id": "topic1_2",
+                  "completion_percentage": 25,
+                  "questions_attempted": ["q1_2_1"],
+                  "questions_correct": [],
+                  "time_spent_seconds": 180,
+                  "last_accessed": "2025-05-04T16:45:00Z"
+                }
+              ],
+              "time_spent_seconds": 600,
+              "last_accessed": "2025-05-05T14:30:00Z"
+            },
+            {
+              "unit_id": "unit2",
+              "completion_percentage": 10,
+              "topics_progress": [
+                {
+                  "topic_id": "topic2_1",
+                  "completion_percentage": 10,
+                  "questions_attempted": ["q2_1_1"],
+                  "questions_correct": [],
+                  "time_spent_seconds": 150,
+                  "last_accessed": "2025-05-03T10:15:00Z"
+                }
+              ],
+              "time_spent_seconds": 150,
+              "last_accessed": "2025-05-03T10:15:00Z"
+            }
+          ],
+          "time_spent_seconds": 750,
+          "strengths": ["limits"],
+          "weaknesses": ["derivatives", "integrals"]
+        },
+        {
+          "course_id": "ap_biology",
+          "last_accessed": "2025-05-02T09:20:00Z",
+          "completion_percentage": 5,
+          "units_progress": [
+            {
+              "unit_id": "unit1",
+              "completion_percentage": 15,
+              "topics_progress": [
+                {
+                  "topic_id": "topic1_1",
+                  "completion_percentage": 15,
+                  "questions_attempted": ["q1_1_1"],
+                  "questions_correct": [],
+                  "time_spent_seconds": 180,
+                  "last_accessed": "2025-05-02T09:20:00Z"
+                }
+              ],
+              "time_spent_seconds": 180,
+              "last_accessed": "2025-05-02T09:20:00Z"
+            }
+          ],
+          "time_spent_seconds": 180,
+          "strengths": [],
+          "weaknesses": ["chemistry of life"]
+        }
+      ],
+      "study_streak_days": 3,
+      "total_questions_attempted": 5,
+      "total_questions_correct": 1,
+      "total_time_spent_seconds": 930,
+      "joined_date": "2025-05-01T00:00:00Z",
+      "last_login": "2025-05-05T14:30:00Z"
+    }
+  ]
+}

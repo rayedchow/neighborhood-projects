@@ -1,0 +1,332 @@
+{
+  "ap_courses": [
+    {
+      "id": "ap_calculus_ab",
+      "name": "AP Calculus AB",
+      "description": "AP Calculus AB covers limits, derivatives, and integrals.",
+      "units": [
+        {
+          "id": "unit1",
+          "name": "Limits and Continuity",
+          "topics": [
+            {
+              "id": "topic1_1",
+              "name": "Defining Limits and Using Limit Notation",
+              "questions": [
+                {
+                  "id": "q1_1_1",
+                  "question": "Evaluate the limit: \\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2}",
+                  "options": [
+                    "0",
+                    "1",
+                    "4",
+                    "Does not exist"
+                  ],
+                  "answer": 2,
+                  "explanation": "By factoring the numerator: \\frac{x^2 - 4}{x - 2} = \\frac{(x+2)(x-2)}{x-2} = x+2 for x ≠ 2. As x approaches 2, this approaches 4."
+                },
+                {
+                  "id": "q1_1_2",
+                  "question": "For what value(s) of the constant a will the function f(x) be continuous at x = 3? f(x) = \\begin{cases} ax^2 + 1, & x < 3 \\\\ 2x - a, & x \\geq 3 \\end{cases}",
+                  "options": [
+                    "a = 1",
+                    "a = 2",
+                    "a = 3",
+                    "a = 4"
+                  ],
+                  "answer": 1,
+                  "explanation": "For continuity at x = 3, we need the left and right limits to be equal: a(3)^2 + 1 = 2(3) - a. Solving: 9a + 1 = 6 - a. Therefore, 10a = 5, so a = 1/2."
+                }
+              ]
+            },
+            {
+              "id": "topic1_2",
+              "name": "Determining Limits Using Algebraic Properties",
+              "questions": [
+                {
+                  "id": "q1_2_1",
+                  "question": "Find the limit: \\lim_{x \\to 0} \\frac{\\sin(3x)}{x}",
+                  "options": [
+                    "0",
+                    "1",
+                    "3",
+                    "∞"
+                  ],
+                  "answer": 2,
+                  "explanation": "Using the limit \\lim_{x \\to 0} \\frac{\\sin(x)}{x} = 1, we have \\lim_{x \\to 0} \\frac{\\sin(3x)}{x} = \\lim_{x \\to 0} \\frac{\\sin(3x)}{3x} \\cdot 3 = 1 \\cdot 3 = 3."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit2",
+          "name": "Differentiation: Definition and Fundamental Properties",
+          "topics": [
+            {
+              "id": "topic2_1",
+              "name": "Defining the Derivative",
+              "questions": [
+                {
+                  "id": "q2_1_1",
+                  "question": "Find the derivative of f(x) = x^3 - 4x^2 + 5x - 7 at x = 2.",
+                  "options": [
+                    "-1",
+                    "1",
+                    "3",
+                    "5"
+                  ],
+                  "answer": 1,
+                  "explanation": "f'(x) = 3x^2 - 8x + 5. At x = 2: f'(2) = 3(2)^2 - 8(2) + 5 = 12 - 16 + 5 = 1."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ap_biology",
+      "name": "AP Biology",
+      "description": "AP Biology covers molecules and cells, heredity and evolution, and organisms and populations.",
+      "units": [
+        {
+          "id": "unit1",
+          "name": "Chemistry of Life",
+          "topics": [
+            {
+              "id": "topic1_1",
+              "name": "Structure of Water and Hydrogen Bonding",
+              "questions": [
+                {
+                  "id": "q1_1_1",
+                  "question": "Which property of water is a direct result of hydrogen bonding?",
+                  "options": [
+                    "Low specific heat",
+                    "High surface tension",
+                    "Low boiling point",
+                    "Non-polarity"
+                  ],
+                  "answer": 1,
+                  "explanation": "High surface tension is a direct result of hydrogen bonding between water molecules, which creates a 'skin-like' surface on water."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ap_us_history",
+      "name": "AP US History",
+      "description": "AP US History examines the cultural, economic, political, and social developments in United States history.",
+      "units": [
+        {
+          "id": "unit1",
+          "name": "Period 1: 1491-1607",
+          "topics": [
+            {
+              "id": "topic1_1",
+              "name": "Native American Societies Before European Contact",
+              "questions": [
+                {
+                  "id": "q1_1_1",
+                  "question": "Which of the following best describes the agricultural practices of Native Americans in the Eastern Woodlands before European contact?",
+                  "options": [
+                    "Nomadic hunting with no agriculture",
+                    "Intensive terrace farming",
+                    "Mixed agriculture including the Three Sisters (corn, beans, squash)",
+                    "Plantation-style monoculture"
+                  ],
+                  "answer": 2,
+                  "explanation": "Eastern Woodland Native Americans practiced mixed agriculture, with the Three Sisters (corn, beans, and squash) being central to their farming techniques."
+                },
+                {
+                  "id": "q1_1_2",
+                  "question": "The encomienda system established by the Spanish in the Americas was primarily designed to:",
+                  "options": [
+                    "Protect indigenous peoples from exploitation",
+                    "Convert Native Americans to Christianity",
+                    "Establish a labor system using indigenous workers",
+                    "Create autonomous native territories"
+                  ],
+                  "answer": 2,
+                  "explanation": "The encomienda system was established by Spanish colonizers to use indigenous labor for mining, agriculture, and other economic activities, often resulting in exploitation and harsh conditions."
+                },
+                {
+                  "id": "q1_1_3",
+                  "question": "Which of the following was a significant effect of European diseases on Native American populations?",
+                  "options": [
+                    "Minimal impact due to pre-existing immunity",
+                    "Population decline of up to 90% in some regions",
+                    "Increased birth rates to compensate for losses",
+                    "Strengthened resistance to European colonization"
+                  ],
+                  "answer": 1,
+                  "explanation": "European diseases like smallpox had devastating effects on Native American populations, causing demographic collapse with population declines of 80-90% in many regions since they had no immunity to these new diseases."
+                }
+              ]
+            },
+            {
+              "id": "topic1_2",
+              "name": "European Exploration in the Americas",
+              "questions": [
+                {
+                  "id": "q1_2_1",
+                  "question": "What was the primary motivation for Spanish exploration and colonization in the Americas during the 15th and 16th centuries?",
+                  "options": [
+                    "Scientific research",
+                    "Religious freedom",
+                    "Gold, glory, and God",
+                    "Agricultural expansion"
+                  ],
+                  "answer": 2,
+                  "explanation": "Spanish exploration was primarily motivated by the desire for wealth (particularly gold and silver), the spread of Christianity, and glory for both the Spanish crown and individual conquistadors, commonly summarized as 'Gold, glory, and God.'"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ap_psychology",
+      "name": "AP Psychology",
+      "description": "AP Psychology introduces the systematic and scientific study of human behavior and mental processes.",
+      "units": [
+        {
+          "id": "unit1",
+          "name": "Biological Bases of Behavior",
+          "topics": [
+            {
+              "id": "topic1_1",
+              "name": "Interaction of Heredity and Environment",
+              "questions": [
+                {
+                  "id": "q1_1_1",
+                  "question": "Which of the following best describes the relationship between genetics and environment?",
+                  "options": [
+                    "Genetics alone determines behavior.",
+                    "Environment alone determines behavior.",
+                    "Both genetics and environment interact to influence behavior.",
+                    "Genetics and environment influence behavior independently."
+                  ],
+                  "answer": 2,
+                  "explanation": "Behavior is influenced by the interaction of genetics (nature) and environment (nurture)."
+                },
+                {
+                  "id": "q1_1_2",
+                  "question": "The field of epigenetics studies how:",
+                  "options": [
+                    "DNA is mutated by radiation.",
+                    "Genetic predispositions cause diseases.",
+                    "Environment can affect gene expression.",
+                    "Behavior changes due to learning."
+                  ],
+                  "answer": 2,
+                  "explanation": "Epigenetics examines how environmental influences can activate or deactivate genes without changing DNA sequences."
+                }
+              ]
+            },
+            {
+              "id": "topic1_2",
+              "name": "Overview of the Nervous System",
+              "questions": [
+                {
+                  "id": "q1_2_1",
+                  "question": "Which part of the nervous system is responsible for calming the body after a stressful event?",
+                  "options": [
+                    "Sympathetic nervous system",
+                    "Parasympathetic nervous system",
+                    "Somatic nervous system",
+                    "Central nervous system"
+                  ],
+                  "answer": 1,
+                  "explanation": "The parasympathetic nervous system restores the body to a state of calm after arousal."
+                },
+                {
+                  "id": "q1_2_2",
+                  "question": "The central nervous system consists of:",
+                  "options": [
+                    "Brain and spinal cord",
+                    "Brain and nerves",
+                    "Spinal cord and somatic nerves",
+                    "All nerves outside the brain"
+                  ],
+                  "answer": 0,
+                  "explanation": "The central nervous system includes the brain and spinal cord."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit2",
+          "name": "Cognition",
+          "topics": [
+            {
+              "id": "topic2_1",
+              "name": "Perception",
+              "questions": [
+                {
+                  "id": "q2_1_1",
+                  "question": "The ability to perceive objects as unchanging even as lighting and angles change is called:",
+                  "options": [
+                    "Retinal disparity",
+                    "Perceptual constancy",
+                    "Feature detection",
+                    "Depth perception"
+                  ],
+                  "answer": 1,
+                  "explanation": "Perceptual constancy allows us to recognize objects as constant despite changes in sensory input."
+                },
+                {
+                  "id": "q2_1_2",
+                  "question": "Which monocular cue involves closer objects blocking the view of those farther away?",
+                  "options": [
+                    "Relative clarity",
+                    "Texture gradient",
+                    "Interposition",
+                    "Linear perspective"
+                  ],
+                  "answer": 2,
+                  "explanation": "Interposition is when one object overlaps another, helping the brain perceive depth."
+                }
+              ]
+            },
+            {
+              "id": "topic2_2",
+              "name": "Thinking, Problem-Solving, Judgments, and Decision-Making",
+              "questions": [
+                {
+                  "id": "q2_2_1",
+                  "question": "Using a screwdriver as a weight instead of a tool illustrates overcoming:",
+                  "options": [
+                    "Confirmation bias",
+                    "Functional fixedness",
+                    "Heuristic use",
+                    "Representativeness bias"
+                  ],
+                  "answer": 1,
+                  "explanation": "Functional fixedness is the tendency to see objects as only working in a particular way."
+                },
+                {
+                  "id": "q2_2_2",
+                  "question": "A heuristic is best described as:",
+                  "options": [
+                    "A logical rule that guarantees a solution",
+                    "A mental shortcut that speeds decision making",
+                    "A systematic problem-solving strategy",
+                    "An analysis of statistical likelihood"
+                  ],
+                  "answer": 1,
+                  "explanation": "Heuristics are mental shortcuts that help us solve problems quickly but can lead to errors."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

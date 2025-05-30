@@ -1,0 +1,57 @@
+{
+  "posts": [
+    {
+      "id": "post-1",
+      "groupId": "sg-1",
+      "content": "Hello everyone! I'm having trouble understanding Newton's Third Law. Can someone explain it in simple terms?",
+      "userId": "user2",
+      "userName": "Jane Smith",
+      "createdAt": "2025-05-15T14:30:00.000Z",
+      "likes": 2,
+      "comments": [
+        {
+          "id": "comment-1",
+          "content": "Newton's Third Law states that for every action, there's an equal and opposite reaction. For example, when you push against a wall, the wall is also pushing back against you with the same force.",
+          "userId": "user1",
+          "userName": "Demo User",
+          "createdAt": "2025-05-15T15:10:00.000Z"
+        },
+        {
+          "id": "comment-2",
+          "content": "A good way to think about it is with rockets: they push exhaust gases backward, and the gases push the rocket forward with equal force.",
+          "userId": "user3",
+          "userName": "Alex Johnson",
+          "createdAt": "2025-05-15T16:05:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "post-2",
+      "groupId": "sg-1",
+      "content": "I found this amazing video that explains projectile motion perfectly! Really helped me understand the concepts: https://example.com/physics-video",
+      "userId": "user1",
+      "userName": "Demo User",
+      "createdAt": "2025-05-20T10:15:00.000Z",
+      "likes": 3,
+      "comments": []
+    },
+    {
+      "id": "post-3",
+      "groupId": "sg-2",
+      "content": "Anyone want to do a group study session for integration techniques tomorrow at 4pm?",
+      "userId": "user4",
+      "userName": "Emma Wilson",
+      "createdAt": "2025-05-22T17:45:00.000Z",
+      "likes": 1,
+      "comments": [
+        {
+          "id": "comment-3",
+          "content": "I'll be there! I really need help with integration by parts.",
+          "userId": "user1",
+          "userName": "Demo User",
+          "createdAt": "2025-05-22T18:30:00.000Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "groups": [
+    {
+      "id": "sg-1",
+      "name": "AP Physics Study Group",
+      "description": "A collaborative group to study for the AP Physics exam and help each other with difficult concepts.",
+      "members": [
+        {
+          "id": "user1",
+          "name": "Demo User",
+          "role": "admin",
+          "joinedAt": "2025-05-01T10:00:00.000Z"
+        },
+        {
+          "id": "user2",
+          "name": "Jane Smith",
+          "role": "member",
+          "joinedAt": "2025-05-02T14:30:00.000Z"
+        },
+        {
+          "id": "user3",
+          "name": "Alex Johnson",
+          "role": "member",
+          "joinedAt": "2025-05-03T09:15:00.000Z"
+        }
+      ],
+      "courseId": "ap_physics",
+      "courseName": "AP Physics",
+      "createdAt": "2025-05-01T10:00:00.000Z",
+      "lastActivity": "2025-05-27T16:45:00.000Z",
+      "isPublic": true
+    },
+    {
+      "id": "sg-2",
+      "name": "AP Calculus BC Group",
+      "description": "Advanced study group focused on mastering calculus concepts and practice problems.",
+      "members": [
+        {
+          "id": "user1",
+          "name": "Demo User",
+          "role": "member",
+          "joinedAt": "2025-05-10T11:20:00.000Z"
+        },
+        {
+          "id": "user4",
+          "name": "Emma Wilson",
+          "role": "admin",
+          "joinedAt": "2025-05-08T13:00:00.000Z"
+        }
+      ],
+      "courseId": "ap_calculus_bc",
+      "courseName": "AP Calculus BC",
+      "createdAt": "2025-05-08T13:00:00.000Z",
+      "lastActivity": "2025-05-26T19:10:00.000Z",
+      "isPublic": true
+    },
+    {
+      "id": "sg-3",
+      "name": "AP Biology Study Circle",
+      "description": "Comprehensive review of AP Biology curriculum with a focus on lab techniques and essay questions.",
+      "members": [
+        {
+          "id": "user5",
+          "name": "Michael Brown",
+          "role": "admin",
+          "joinedAt": "2025-05-12T16:00:00.000Z"
+        },
+        {
+          "id": "user6",
+          "name": "Sophia Lee",
+          "role": "member",
+          "joinedAt": "2025-05-13T10:30:00.000Z"
+        }
+      ],
+      "courseId": "ap_biology",
+      "courseName": "AP Biology",
+      "createdAt": "2025-05-12T16:00:00.000Z",
+      "lastActivity": "2025-05-25T14:20:00.000Z",
+      "isPublic": true
+    },
+    {
+      "id": "e9fedabb-52d7-4bc0-bc20-256aaf98ed12",
+      "name": "test",
+      "description": "my study group!!!",
+      "members": [
+        {
+          "id": "user1",
+          "name": "User user1",
+          "role": "admin",
+          "joinedAt": "2025-05-30T13:08:21.871Z"
+        }
+      ],
+      "createdAt": "2025-05-30T13:08:21.871Z",
+      "lastActivity": "2025-05-30T13:08:21.871Z",
+      "isPublic": true
+    }
+  ]
+}

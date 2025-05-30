@@ -1,0 +1,43 @@
+{
+  "resources": [
+    {
+      "id": "res-1",
+      "groupId": "sg-1",
+      "title": "Physics Formula Sheet",
+      "description": "Comprehensive sheet with all formulas needed for the AP Physics exam",
+      "type": "link",
+      "url": "https://example.com/physics-formulas",
+      "addedBy": "user1",
+      "addedAt": "2025-05-10T09:30:00.000Z"
+    },
+    {
+      "id": "res-2",
+      "groupId": "sg-1",
+      "title": "Mechanics Practice Problems",
+      "description": "Collection of challenging problems focusing on mechanics",
+      "type": "link",
+      "url": "https://example.com/mechanics-problems",
+      "addedBy": "user3",
+      "addedAt": "2025-05-14T16:20:00.000Z"
+    },
+    {
+      "id": "res-3",
+      "groupId": "sg-2",
+      "title": "Integration Techniques Cheat Sheet",
+      "description": "Quick reference for all major integration methods and when to use them",
+      "type": "link",
+      "url": "https://example.com/integration-techniques",
+      "addedBy": "user4",
+      "addedAt": "2025-05-18T11:45:00.000Z"
+    },
+    {
+      "id": "res-4",
+      "groupId": "sg-2",
+      "title": "Calculus Study Guide",
+      "description": "Comprehensive notes covering all major topics in the AP Calculus BC curriculum",
+      "type": "note",
+      "addedBy": "user1",
+      "addedAt": "2025-05-19T14:10:00.000Z"
+    }
+  ]
+}
