@@ -16,6 +16,26 @@ function PracticeContent() {
   const unitId = searchParams.get('unitId');
   const topicId = searchParams.get('topicId');
   const count = searchParams.get('count') ? parseInt(searchParams.get('count')!) : 5;
+
+  // Redirect to course selection if no courseId is provided
+  useEffect(() => {
+    if (!courseId) {
+      router.push('/courses');
+    }
+  }, [courseId, router]);
+
+  // If no courseId, show loading state while redirecting
+  if (!courseId) {
+    return (
+      <div className="container mx-auto p-4">
+        <Card>
+          <CardContent className="text-center py-8">
+            <p>Redirecting to course selection...</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
   
   // Get user ID from localStorage (authentication)
   const [userId, setUserId] = useState<string | null>("user1"); // Default for fallback

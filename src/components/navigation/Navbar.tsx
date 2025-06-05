@@ -133,7 +133,7 @@ export const Navbar: React.FC = () => {
                 Courses
               </Link>
               <Link
-                href="/practice"
+                href="/courses"
                 className="inline-flex items-center px-2 py-1 text-sm font-medium text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 border-b-2 border-transparent hover:border-blue-500 transition-all duration-200"
               >
                 Practice

@@ -86,113 +86,9 @@
       ]
     },
     {
-      "id": "ap_biology",
-      "name": "AP Biology",
-      "description": "AP Biology covers molecules and cells, heredity and evolution, and organisms and populations.",
-      "units": [
-        {
-          "id": "unit1",
-          "name": "Chemistry of Life",
-          "topics": [
-            {
-              "id": "topic1_1",
-              "name": "Structure of Water and Hydrogen Bonding",
-              "questions": [
-                {
-                  "id": "q1_1_1",
-                  "question": "Which property of water is a direct result of hydrogen bonding?",
-                  "options": [
-                    "Low specific heat",
-                    "High surface tension",
-                    "Low boiling point",
-                    "Non-polarity"
-                  ],
-                  "answer": 1,
-                  "explanation": "High surface tension is a direct result of hydrogen bonding between water molecules, which creates a 'skin-like' surface on water."
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "ap_us_history",
-      "name": "AP US History",
-      "description": "AP US History examines the cultural, economic, political, and social developments in United States history.",
-      "units": [
-        {
-          "id": "unit1",
-          "name": "Period 1: 1491-1607",
-          "topics": [
-            {
-              "id": "topic1_1",
-              "name": "Native American Societies Before European Contact",
-              "questions": [
-                {
-                  "id": "q1_1_1",
-                  "question": "Which of the following best describes the agricultural practices of Native Americans in the Eastern Woodlands before European contact?",
-                  "options": [
-                    "Nomadic hunting with no agriculture",
-                    "Intensive terrace farming",
-                    "Mixed agriculture including the Three Sisters (corn, beans, squash)",
-                    "Plantation-style monoculture"
-                  ],
-                  "answer": 2,
-                  "explanation": "Eastern Woodland Native Americans practiced mixed agriculture, with the Three Sisters (corn, beans, and squash) being central to their farming techniques."
-                },
-                {
-                  "id": "q1_1_2",
-                  "question": "The encomienda system established by the Spanish in the Americas was primarily designed to:",
-                  "options": [
-                    "Protect indigenous peoples from exploitation",
-                    "Convert Native Americans to Christianity",
-                    "Establish a labor system using indigenous workers",
-                    "Create autonomous native territories"
-                  ],
-                  "answer": 2,
-                  "explanation": "The encomienda system was established by Spanish colonizers to use indigenous labor for mining, agriculture, and other economic activities, often resulting in exploitation and harsh conditions."
-                },
-                {
-                  "id": "q1_1_3",
-                  "question": "Which of the following was a significant effect of European diseases on Native American populations?",
-                  "options": [
-                    "Minimal impact due to pre-existing immunity",
-                    "Population decline of up to 90% in some regions",
-                    "Increased birth rates to compensate for losses",
-                    "Strengthened resistance to European colonization"
-                  ],
-                  "answer": 1,
-                  "explanation": "European diseases like smallpox had devastating effects on Native American populations, causing demographic collapse with population declines of 80-90% in many regions since they had no immunity to these new diseases."
-                }
-              ]
-            },
-            {
-              "id": "topic1_2",
-              "name": "European Exploration in the Americas",
-              "questions": [
-                {
-                  "id": "q1_2_1",
-                  "question": "What was the primary motivation for Spanish exploration and colonization in the Americas during the 15th and 16th centuries?",
-                  "options": [
-                    "Scientific research",
-                    "Religious freedom",
-                    "Gold, glory, and God",
-                    "Agricultural expansion"
-                  ],
-                  "answer": 2,
-                  "explanation": "Spanish exploration was primarily motivated by the desire for wealth (particularly gold and silver), the spread of Christianity, and glory for both the Spanish crown and individual conquistadors, commonly summarized as 'Gold, glory, and God.'"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "ap_psychology",
       "name": "AP Psychology",
-      "description": "AP Psychology introduces the systematic and scientific study of human behavior and mental processes.",
+      "description": "Full AP Psychology curriculum-aligned content with questions per lesson.",
       "units": [
         {
           "id": "unit1",
@@ -257,6 +153,126 @@
                   "explanation": "The central nervous system includes the brain and spinal cord."
                 }
               ]
+            },
+            {
+              "id": "topic1_3",
+              "name": "The Neuron and Neural Firing",
+              "questions": [
+                {
+                  "id": "q1_3_1",
+                  "question": "Which part of the neuron receives messages from other neurons?",
+                  "options": [
+                    "Axon",
+                    "Dendrites",
+                    "Myelin sheath",
+                    "Synapse"
+                  ],
+                  "answer": 1,
+                  "explanation": "Dendrites receive signals from other neurons and transmit them toward the cell body."
+                },
+                {
+                  "id": "q1_3_2",
+                  "question": "The brief electrical charge that travels down an axon is called:",
+                  "options": [
+                    "Neurotransmitter",
+                    "Threshold",
+                    "Action potential",
+                    "Refractory period"
+                  ],
+                  "answer": 2,
+                  "explanation": "An action potential is the neural impulse that travels down the axon."
+                }
+              ]
+            },
+            {
+              "id": "topic1_4",
+              "name": "The Brain",
+              "questions": [
+                {
+                  "id": "q1_4_1",
+                  "question": "Which brain structure is most closely associated with forming new memories?",
+                  "options": [
+                    "Cerebellum",
+                    "Amygdala",
+                    "Thalamus",
+                    "Hippocampus"
+                  ],
+                  "answer": 3,
+                  "explanation": "The hippocampus is involved in the formation of new long-term memories."
+                },
+                {
+                  "id": "q1_4_2",
+                  "question": "Damage to the occipital lobe would most likely affect:",
+                  "options": [
+                    "Hearing",
+                    "Touch",
+                    "Vision",
+                    "Balance"
+                  ],
+                  "answer": 2,
+                  "explanation": "The occipital lobe is primarily responsible for processing visual information."
+                }
+              ]
+            },
+            {
+              "id": "topic1_5",
+              "name": "Sleep",
+              "questions": [
+                {
+                  "id": "q1_5_1",
+                  "question": "Which stage of sleep is associated with vivid dreaming?",
+                  "options": [
+                    "Stage 1",
+                    "Stage 2",
+                    "REM sleep",
+                    "Stage 4"
+                  ],
+                  "answer": 2,
+                  "explanation": "REM (rapid eye movement) sleep is when most vivid dreaming occurs."
+                },
+                {
+                  "id": "q1_5_2",
+                  "question": "The sleep disorder characterized by uncontrollable sleep attacks is:",
+                  "options": [
+                    "Insomnia",
+                    "Sleep apnea",
+                    "Narcolepsy",
+                    "Night terrors"
+                  ],
+                  "answer": 2,
+                  "explanation": "Narcolepsy is a sleep disorder involving sudden, uncontrollable episodes of sleep."
+                }
+              ]
+            },
+            {
+              "id": "topic1_6",
+              "name": "Sensation",
+              "questions": [
+                {
+                  "id": "q1_6_1",
+                  "question": "Transduction refers to:",
+                  "options": [
+                    "The minimum stimulation needed to detect a stimulus",
+                    "Interpreting sensory input",
+                    "Conversion of stimulus energy into neural signals",
+                    "Filtering irrelevant sensory input"
+                  ],
+                  "answer": 2,
+                  "explanation": "Transduction is the process of converting physical energy into neural signals the brain can interpret."
+                },
+                {
+                  "id": "q1_6_2",
+                  "question": "Which sense is associated with the cochlea?",
+                  "options": [
+                    "Touch",
+                    "Smell",
+                    "Vision",
+                    "Hearing"
+                  ],
+                  "answer": 3,
+                  "explanation": "The cochlea is a part of the inner ear responsible for hearing."
+                }
+              ]
             }
           ]
         },
@@ -270,27 +286,27 @@
               "questions": [
                 {
                   "id": "q2_1_1",
-                  "question": "The ability to perceive objects as unchanging even as lighting and angles change is called:",
+                  "question": "Which monocular depth cue makes distant objects appear smaller than nearby ones?",
                   "options": [
+                    "Relative size",
+                    "Interposition",
                     "Retinal disparity",
-                    "Perceptual constancy",
-                    "Feature detection",
-                    "Depth perception"
+                    "Feature detection"
                   ],
-                  "answer": 1,
-                  "explanation": "Perceptual constancy allows us to recognize objects as constant despite changes in sensory input."
+                  "answer": 0,
+                  "explanation": "Relative size is a monocular cue where smaller images are perceived as farther away."
                 },
                 {
                   "id": "q2_1_2",
-                  "question": "Which monocular cue involves closer objects blocking the view of those farther away?",
+                  "question": "Which term refers to the brain's ability to process many aspects of a problem simultaneously?",
                   "options": [
-                    "Relative clarity",
-                    "Texture gradient",
-                    "Interposition",
-                    "Linear perspective"
+                    "Selective attention",
+                    "Perceptual set",
+                    "Parallel processing",
+                    "Top-down processing"
                   ],
                   "answer": 2,
-                  "explanation": "Interposition is when one object overlaps another, helping the brain perceive depth."
+                  "explanation": "Parallel processing allows the brain to analyze multiple features of a stimulus at once."
                 }
               ]
             },
@@ -300,27 +316,855 @@
               "questions": [
                 {
                   "id": "q2_2_1",
-                  "question": "Using a screwdriver as a weight instead of a tool illustrates overcoming:",
+                  "question": "The tendency to cling to one\u2019s initial belief even after receiving contradictory evidence is called:",
                   "options": [
+                    "Availability heuristic",
                     "Confirmation bias",
-                    "Functional fixedness",
-                    "Heuristic use",
-                    "Representativeness bias"
+                    "Belief perseverance",
+                    "Overconfidence"
                   ],
-                  "answer": 1,
-                  "explanation": "Functional fixedness is the tendency to see objects as only working in a particular way."
+                  "answer": 2,
+                  "explanation": "Belief perseverance is maintaining beliefs even after they have been proven wrong."
                 },
                 {
                   "id": "q2_2_2",
-                  "question": "A heuristic is best described as:",
+                  "question": "Which of the following best describes a heuristic?",
                   "options": [
-                    "A logical rule that guarantees a solution",
-                    "A mental shortcut that speeds decision making",
-                    "A systematic problem-solving strategy",
-                    "An analysis of statistical likelihood"
+                    "A step-by-step logical rule",
+                    "A guaranteed problem-solving method",
+                    "A mental shortcut",
+                    "An error in reasoning"
+                  ],
+                  "answer": 2,
+                  "explanation": "A heuristic is a mental shortcut that speeds up decision-making but can lead to errors."
+                }
+              ]
+            },
+            {
+              "id": "topic2_3",
+              "name": "Introduction to Memory",
+              "questions": [
+                {
+                  "id": "q2_3_1",
+                  "question": "What is the first stage of the information-processing memory model?",
+                  "options": [
+                    "Short-term memory",
+                    "Sensory memory",
+                    "Long-term memory",
+                    "Working memory"
                   ],
                   "answer": 1,
-                  "explanation": "Heuristics are mental shortcuts that help us solve problems quickly but can lead to errors."
+                  "explanation": "Sensory memory briefly holds incoming sensory information before further processing."
+                },
+                {
+                  "id": "q2_3_2",
+                  "question": "Which memory store has a limited duration and capacity of about 7 items?",
+                  "options": [
+                    "Long-term memory",
+                    "Echoic memory",
+                    "Short-term memory",
+                    "Procedural memory"
+                  ],
+                  "answer": 2,
+                  "explanation": "Short-term memory can typically hold 7 \u00b1 2 items for about 20 seconds."
+                }
+              ]
+            },
+            {
+              "id": "topic2_4",
+              "name": "Encoding Memories",
+              "questions": [
+                {
+                  "id": "q2_4_1",
+                  "question": "The encoding of meaning, including the meaning of words, is known as:",
+                  "options": [
+                    "Acoustic encoding",
+                    "Structural encoding",
+                    "Semantic encoding",
+                    "Iconic encoding"
+                  ],
+                  "answer": 2,
+                  "explanation": "Semantic encoding involves encoding the meaning of information and is very effective."
+                },
+                {
+                  "id": "q2_4_2",
+                  "question": "Chunking helps memory by:",
+                  "options": [
+                    "Increasing attention span",
+                    "Reducing interference",
+                    "Organizing items into manageable units",
+                    "Eliminating rehearsal"
+                  ],
+                  "answer": 2,
+                  "explanation": "Chunking increases memory efficiency by grouping items into meaningful units."
+                }
+              ]
+            },
+            {
+              "id": "topic2_5",
+              "name": "Storing Memories",
+              "questions": [
+                {
+                  "id": "q2_5_1",
+                  "question": "Which brain structure is most involved in storing implicit memories?",
+                  "options": [
+                    "Hippocampus",
+                    "Cerebellum",
+                    "Amygdala",
+                    "Prefrontal cortex"
+                  ],
+                  "answer": 1,
+                  "explanation": "The cerebellum is key in forming and storing implicit (nondeclarative) memories."
+                },
+                {
+                  "id": "q2_5_2",
+                  "question": "Long-term potentiation refers to:",
+                  "options": [
+                    "A decrease in neural firing",
+                    "A burst of neurotransmitters",
+                    "An increase in a neuron's firing potential",
+                    "Neuron loss due to aging"
+                  ],
+                  "answer": 2,
+                  "explanation": "Long-term potentiation is a neural basis for learning and memory."
+                }
+              ]
+            },
+            {
+              "id": "topic2_6",
+              "name": "Retrieving Memories",
+              "questions": [
+                {
+                  "id": "q2_6_1",
+                  "question": "What is the process of accessing stored information called?",
+                  "options": [
+                    "Retrieval",
+                    "Encoding",
+                    "Recognition",
+                    "Priming"
+                  ],
+                  "answer": 0,
+                  "explanation": "Retrieval is the process of bringing stored memories into conscious awareness."
+                },
+                {
+                  "id": "q2_6_2",
+                  "question": "The tendency to remember items at the beginning and end of a list best demonstrates:",
+                  "options": [
+                    "Spacing effect",
+                    "Serial position effect",
+                    "Priming",
+                    "Interference"
+                  ],
+                  "answer": 1,
+                  "explanation": "The serial position effect reflects better recall of first and last items in a list."
+                }
+              ]
+            },
+            {
+              "id": "topic2_7",
+              "name": "Forgetting and Other Memory Challenges",
+              "questions": [
+                {
+                  "id": "q2_7_1",
+                  "question": "Retroactive interference occurs when:",
+                  "options": [
+                    "Old info disrupts new info",
+                    "New info disrupts old info",
+                    "Info is never encoded",
+                    "Info decays naturally"
+                  ],
+                  "answer": 1,
+                  "explanation": "Retroactive interference is when new learning disrupts recall of old information."
+                },
+                {
+                  "id": "q2_7_2",
+                  "question": "An inability to form new memories after a brain injury is known as:",
+                  "options": [
+                    "Retrograde amnesia",
+                    "Proactive interference",
+                    "Anterograde amnesia",
+                    "Sensory failure"
+                  ],
+                  "answer": 2,
+                  "explanation": "Anterograde amnesia is the inability to create new memories after an injury."
+                }
+              ]
+            },
+            {
+              "id": "topic2_8",
+              "name": "Intelligence and Achievement",
+              "questions": [
+                {
+                  "id": "q2_8_1",
+                  "question": "The concept of general intelligence (g factor) was proposed by:",
+                  "options": [
+                    "Howard Gardner",
+                    "Robert Sternberg",
+                    "Charles Spearman",
+                    "Alfred Binet"
+                  ],
+                  "answer": 2,
+                  "explanation": "Spearman suggested a general intelligence factor underlying all mental abilities."
+                },
+                {
+                  "id": "q2_8_2",
+                  "question": "A test that yields consistent results over time is said to be:",
+                  "options": [
+                    "Valid",
+                    "Standardized",
+                    "Reliable",
+                    "Objective"
+                  ],
+                  "answer": 2,
+                  "explanation": "Reliability refers to the consistency of a test's results."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit3",
+          "name": "Development and Learning",
+          "topics": [
+            {
+              "id": "topic3_1",
+              "name": "Themes and Methods in Developmental Psychology",
+              "questions": [
+                {
+                  "id": "q3_1_1",
+                  "question": "Which research method studies the same individuals over a long period?",
+                  "options": [
+                    "Cross-sectional study",
+                    "Experimental method",
+                    "Case study",
+                    "Longitudinal study"
+                  ],
+                  "answer": 3,
+                  "explanation": "Longitudinal studies track the same individuals over time to examine development."
+                },
+                {
+                  "id": "q3_1_2",
+                  "question": "A major debate in developmental psychology concerns:",
+                  "options": [
+                    "Encoding vs. retrieval",
+                    "Sensory vs. motor functions",
+                    "Nature vs. nurture",
+                    "Fluid vs. crystallized intelligence"
+                  ],
+                  "answer": 2,
+                  "explanation": "Nature vs. nurture explores the influence of genetics and environment on behavior."
+                }
+              ]
+            },
+            {
+              "id": "topic3_2",
+              "name": "Physical Development Across the Lifespan",
+              "questions": [
+                {
+                  "id": "q3_2_1",
+                  "question": "During adolescence, which brain area is still maturing?",
+                  "options": [
+                    "Amygdala",
+                    "Hypothalamus",
+                    "Occipital lobe",
+                    "Prefrontal cortex"
+                  ],
+                  "answer": 3,
+                  "explanation": "The prefrontal cortex, involved in planning and impulse control, matures last."
+                },
+                {
+                  "id": "q3_2_2",
+                  "question": "Menopause typically marks the end of:",
+                  "options": [
+                    "Adolescence",
+                    "Puberty",
+                    "Childhood",
+                    "Reproductive capability"
+                  ],
+                  "answer": 3,
+                  "explanation": "Menopause is the cessation of menstruation and fertility in women."
+                }
+              ]
+            },
+            {
+              "id": "topic3_3",
+              "name": "Gender and Sexual Orientation",
+              "questions": [
+                {
+                  "id": "q3_3_1",
+                  "question": "Gender identity refers to:",
+                  "options": [
+                    "Attraction to others",
+                    "Assigned sex at birth",
+                    "Cultural norms",
+                    "One\u2019s internal sense of gender"
+                  ],
+                  "answer": 3,
+                  "explanation": "Gender identity is how one personally identifies their gender, not biological sex."
+                },
+                {
+                  "id": "q3_3_2",
+                  "question": "Sexual orientation refers to:",
+                  "options": [
+                    "Biological sex",
+                    "Gender expression",
+                    "Romantic or sexual attraction",
+                    "Chromosomal pattern"
+                  ],
+                  "answer": 2,
+                  "explanation": "Sexual orientation refers to patterns of emotional, romantic, or sexual attraction."
+                }
+              ]
+            },
+            {
+              "id": "topic3_4",
+              "name": "Cognitive Development Across the Lifespan",
+              "questions": [
+                {
+                  "id": "q3_4_1",
+                  "question": "Which of Piaget\u2019s stages includes hypothetical thinking?",
+                  "options": [
+                    "Sensorimotor",
+                    "Preoperational",
+                    "Concrete operational",
+                    "Formal operational"
+                  ],
+                  "answer": 3,
+                  "explanation": "The formal operational stage allows abstract and hypothetical reasoning."
+                },
+                {
+                  "id": "q3_4_2",
+                  "question": "Which stage is characterized by understanding conservation?",
+                  "options": [
+                    "Sensorimotor",
+                    "Concrete operational",
+                    "Preoperational",
+                    "Formal operational"
+                  ],
+                  "answer": 1,
+                  "explanation": "Children in the concrete operational stage grasp concepts like conservation."
+                }
+              ]
+            },
+            {
+              "id": "topic3_5",
+              "name": "Communication and Language Development",
+              "questions": [
+                {
+                  "id": "q3_5_1",
+                  "question": "Which term describes the smallest unit of sound in a language?",
+                  "options": [
+                    "Morpheme",
+                    "Syntax",
+                    "Phoneme",
+                    "Semantics"
+                  ],
+                  "answer": 2,
+                  "explanation": "Phonemes are the basic sound units of language."
+                },
+                {
+                  "id": "q3_5_2",
+                  "question": "Babbling is a milestone in:",
+                  "options": [
+                    "Cognitive reasoning",
+                    "Language development",
+                    "Moral decision-making",
+                    "Fine motor control"
+                  ],
+                  "answer": 1,
+                  "explanation": "Babbling represents early stages of language production in infants."
+                }
+              ]
+            },
+            {
+              "id": "topic3_6",
+              "name": "Social-Emotional Development Across the Lifespan",
+              "questions": [
+                {
+                  "id": "q3_6_1",
+                  "question": "According to Erikson, the main conflict in adolescence is:",
+                  "options": [
+                    "Trust vs. mistrust",
+                    "Autonomy vs. shame",
+                    "Identity vs. role confusion",
+                    "Intimacy vs. isolation"
+                  ],
+                  "answer": 2,
+                  "explanation": "Adolescents work through the challenge of developing a stable identity."
+                },
+                {
+                  "id": "q3_6_2",
+                  "question": "Ainsworth's Strange Situation is used to assess:",
+                  "options": [
+                    "Attachment styles",
+                    "Temperament",
+                    "Cognitive abilities",
+                    "Motor development"
+                  ],
+                  "answer": 0,
+                  "explanation": "The Strange Situation measures a child\u2019s attachment to their caregiver."
+                }
+              ]
+            },
+            {
+              "id": "topic3_7",
+              "name": "Classical Conditioning",
+              "questions": [
+                {
+                  "id": "q3_7_1",
+                  "question": "In classical conditioning, the neutral stimulus becomes:",
+                  "options": [
+                    "Unconditioned stimulus",
+                    "Unconditioned response",
+                    "Conditioned stimulus",
+                    "Conditioned response"
+                  ],
+                  "answer": 2,
+                  "explanation": "The neutral stimulus becomes the conditioned stimulus after association."
+                },
+                {
+                  "id": "q3_7_2",
+                  "question": "Pavlov is best known for conditioning dogs to salivate to:",
+                  "options": [
+                    "Food",
+                    "Noise",
+                    "A bell",
+                    "Light"
+                  ],
+                  "answer": 2,
+                  "explanation": "Pavlov conditioned dogs to salivate at the sound of a bell."
+                }
+              ]
+            },
+            {
+              "id": "topic3_8",
+              "name": "Operant Conditioning",
+              "questions": [
+                {
+                  "id": "q3_8_1",
+                  "question": "Which is an example of positive reinforcement?",
+                  "options": [
+                    "Taking aspirin to relieve pain",
+                    "Receiving praise for doing homework",
+                    "Avoiding chores by lying",
+                    "Getting grounded for misbehavior"
+                  ],
+                  "answer": 1,
+                  "explanation": "Positive reinforcement adds a desirable stimulus to increase behavior."
+                },
+                {
+                  "id": "q3_8_2",
+                  "question": "B.F. Skinner is associated with:",
+                  "options": [
+                    "Classical conditioning",
+                    "Social learning",
+                    "Operant conditioning",
+                    "Cognitive development"
+                  ],
+                  "answer": 2,
+                  "explanation": "Skinner developed the theory of operant conditioning based on reinforcement and punishment."
+                }
+              ]
+            },
+            {
+              "id": "topic3_9",
+              "name": "Social, Cognitive, and Neurological Factors in Learning",
+              "questions": [
+                {
+                  "id": "q3_9_1",
+                  "question": "Observational learning is best illustrated by:",
+                  "options": [
+                    "Classical conditioning",
+                    "Shaping behavior",
+                    "Modeling",
+                    "Habituation"
+                  ],
+                  "answer": 2,
+                  "explanation": "Modeling is learning by observing and imitating others, a core part of social learning theory."
+                },
+                {
+                  "id": "q3_9_2",
+                  "question": "Mirror neurons are believed to be involved in:",
+                  "options": [
+                    "Sleep regulation",
+                    "Long-term memory",
+                    "Observational learning",
+                    "Motor inhibition"
+                  ],
+                  "answer": 2,
+                  "explanation": "Mirror neurons activate when we observe someone else performing an action."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit4",
+          "name": "Social Psychology and Personality",
+          "topics": [
+            {
+              "id": "topic4_1",
+              "name": "Attribution Theory and Person Perception",
+              "questions": [
+                {
+                  "id": "q4_1_1",
+                  "question": "The fundamental attribution error is the tendency to:",
+                  "options": [
+                    "Attribute our behavior to internal causes",
+                    "Attribute others' behavior to external causes",
+                    "Overestimate internal causes for others\u2019 behavior",
+                    "Ignore situational factors in our behavior"
+                  ],
+                  "answer": 2,
+                  "explanation": "People tend to overestimate personality and underestimate the situation when evaluating others."
+                },
+                {
+                  "id": "q4_1_2",
+                  "question": "Self-serving bias is most likely to occur when:",
+                  "options": [
+                    "Evaluating others",
+                    "We succeed or fail",
+                    "Explaining random events",
+                    "Predicting future behavior"
+                  ],
+                  "answer": 1,
+                  "explanation": "Self-serving bias leads people to credit success to themselves and blame failures on external factors."
+                }
+              ]
+            },
+            {
+              "id": "topic4_2",
+              "name": "Attitude Formation and Attitude Change",
+              "questions": [
+                {
+                  "id": "q4_2_1",
+                  "question": "Which theory explains discomfort caused by inconsistencies between attitudes and actions?",
+                  "options": [
+                    "Self-perception theory",
+                    "Attribution theory",
+                    "Cognitive dissonance theory",
+                    "Drive reduction theory"
+                  ],
+                  "answer": 2,
+                  "explanation": "Cognitive dissonance theory proposes that we change attitudes to reduce tension from inconsistent thoughts or actions."
+                },
+                {
+                  "id": "q4_2_2",
+                  "question": "What route to persuasion involves logic and careful argument evaluation?",
+                  "options": [
+                    "Peripheral",
+                    "Heuristic",
+                    "Emotional",
+                    "Central"
+                  ],
+                  "answer": 3,
+                  "explanation": "The central route to persuasion uses evidence and reasoning to influence attitudes."
+                }
+              ]
+            },
+            {
+              "id": "topic4_3",
+              "name": "Psychology of Social Situations",
+              "questions": [
+                {
+                  "id": "q4_3_1",
+                  "question": "The tendency to exert less effort in a group than individually is known as:",
+                  "options": [
+                    "Group polarization",
+                    "Deindividuation",
+                    "Social loafing",
+                    "Conformity"
+                  ],
+                  "answer": 2,
+                  "explanation": "Social loafing occurs when people work less hard in a group setting."
+                },
+                {
+                  "id": "q4_3_2",
+                  "question": "Which concept explains stronger performance on well-learned tasks in the presence of others?",
+                  "options": [
+                    "Social facilitation",
+                    "Groupthink",
+                    "Social inhibition",
+                    "Normative influence"
+                  ],
+                  "answer": 0,
+                  "explanation": "Social facilitation refers to improved performance on tasks when others are watching."
+                }
+              ]
+            },
+            {
+              "id": "topic4_4",
+              "name": "Psychodynamic and Humanistic Theories of Personality",
+              "questions": [
+                {
+                  "id": "q4_4_1",
+                  "question": "According to Freud, the part of personality that mediates between the id and superego is the:",
+                  "options": [
+                    "Ego",
+                    "Id",
+                    "Conscience",
+                    "Subconscious"
+                  ],
+                  "answer": 0,
+                  "explanation": "The ego balances the desires of the id and the constraints of the superego."
+                },
+                {
+                  "id": "q4_4_2",
+                  "question": "Which psychologist emphasized self-actualization and a hierarchy of needs?",
+                  "options": [
+                    "Freud",
+                    "Rogers",
+                    "Maslow",
+                    "Jung"
+                  ],
+                  "answer": 2,
+                  "explanation": "Maslow proposed that humans strive for self-actualization after basic needs are met."
+                }
+              ]
+            },
+            {
+              "id": "topic4_5",
+              "name": "Social-Cognitive and Trait Theories of Personality",
+              "questions": [
+                {
+                  "id": "q4_5_1",
+                  "question": "Which term refers to the belief that one controls their own destiny?",
+                  "options": [
+                    "External locus of control",
+                    "Self-efficacy",
+                    "Learned helplessness",
+                    "Internal locus of control"
+                  ],
+                  "answer": 3,
+                  "explanation": "An internal locus of control is the belief that one controls their outcomes."
+                },
+                {
+                  "id": "q4_5_2",
+                  "question": "The Big Five personality traits include all EXCEPT:",
+                  "options": [
+                    "Conscientiousness",
+                    "Intelligence",
+                    "Agreeableness",
+                    "Neuroticism"
+                  ],
+                  "answer": 1,
+                  "explanation": "The Big Five traits are openness, conscientiousness, extraversion, agreeableness, and neuroticism."
+                }
+              ]
+            },
+            {
+              "id": "topic4_6",
+              "name": "Motivation",
+              "questions": [
+                {
+                  "id": "q4_6_1",
+                  "question": "The drive-reduction theory of motivation suggests that behavior is directed toward:",
+                  "options": [
+                    "Achieving self-actualization",
+                    "Reducing internal tension",
+                    "Social approval",
+                    "Increasing stimulation"
+                  ],
+                  "answer": 1,
+                  "explanation": "Drive-reduction theory proposes that behavior reduces biological drives (e.g., hunger)."
+                },
+                {
+                  "id": "q4_6_2",
+                  "question": "Which motivation theory emphasizes personal growth and self-fulfillment?",
+                  "options": [
+                    "Drive-reduction",
+                    "Incentive",
+                    "Arousal",
+                    "Humanistic"
+                  ],
+                  "answer": 3,
+                  "explanation": "The humanistic theory highlights intrinsic growth and reaching full potential."
+                }
+              ]
+            },
+            {
+              "id": "topic4_7",
+              "name": "Emotion",
+              "questions": [
+                {
+                  "id": "q4_7_1",
+                  "question": "Which theory states that emotion is the result of arousal followed by interpretation?",
+                  "options": [
+                    "James-Lange",
+                    "Cannon-Bard",
+                    "Schachter-Singer (two-factor)",
+                    "Opponent-process"
+                  ],
+                  "answer": 2,
+                  "explanation": "The two-factor theory argues emotion is determined by arousal and cognitive label."
+                },
+                {
+                  "id": "q4_7_2",
+                  "question": "The sympathetic nervous system is most active during:",
+                  "options": [
+                    "Relaxation",
+                    "Sleep",
+                    "Emotional arousal",
+                    "Digestion"
+                  ],
+                  "answer": 2,
+                  "explanation": "Emotional arousal activates the sympathetic nervous system to prepare the body for action."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit5",
+          "name": "Mental and Physical Health",
+          "topics": [
+            {
+              "id": "topic5_1",
+              "name": "Introduction to Health Psychology",
+              "questions": [
+                {
+                  "id": "q5_1_1",
+                  "question": "Health psychology focuses on how:",
+                  "options": [
+                    "Genetics alone causes illness",
+                    "Behavior, cognition, and emotion affect health",
+                    "Physical illness causes mental disorders",
+                    "Only medication improves health"
+                  ],
+                  "answer": 1,
+                  "explanation": "Health psychology studies the relationship between behavior, psychology, and physical health."
+                },
+                {
+                  "id": "q5_1_2",
+                  "question": "Which factor is a major contributor to stress-related illnesses?",
+                  "options": [
+                    "Daily hassles",
+                    "High income",
+                    "Vaccinations",
+                    "Sedentary behavior"
+                  ],
+                  "answer": 0,
+                  "explanation": "Daily hassles, though minor, accumulate and impact physical and mental health over time."
+                }
+              ]
+            },
+            {
+              "id": "topic5_2",
+              "name": "Positive Psychology",
+              "questions": [
+                {
+                  "id": "q5_2_1",
+                  "question": "Positive psychology is the scientific study of:",
+                  "options": [
+                    "Disorders and symptoms",
+                    "Human strengths and well-being",
+                    "Brain injury recovery",
+                    "Behavior modification"
+                  ],
+                  "answer": 1,
+                  "explanation": "Positive psychology focuses on what makes life worth living and encourages human flourishing."
+                },
+                {
+                  "id": "q5_2_2",
+                  "question": "Which psychologist is most associated with the development of positive psychology?",
+                  "options": [
+                    "Martin Seligman",
+                    "Sigmund Freud",
+                    "Carl Jung",
+                    "Jean Piaget"
+                  ],
+                  "answer": 0,
+                  "explanation": "Martin Seligman is credited with founding the field of positive psychology."
+                }
+              ]
+            },
+            {
+              "id": "topic5_3",
+              "name": "Explaining and Classifying Psychological Disorders",
+              "questions": [
+                {
+                  "id": "q5_3_1",
+                  "question": "Which tool is primarily used to classify psychological disorders?",
+                  "options": [
+                    "DSM-5",
+                    "IQ test",
+                    "MMPI",
+                    "Projective test"
+                  ],
+                  "answer": 0,
+                  "explanation": "The DSM-5 (Diagnostic and Statistical Manual of Mental Disorders) classifies psychological conditions."
+                },
+                {
+                  "id": "q5_3_2",
+                  "question": "Which model views psychological disorders as a result of biological, psychological, and social factors?",
+                  "options": [
+                    "Medical model",
+                    "Cognitive model",
+                    "Biopsychosocial model",
+                    "Behavioral model"
+                  ],
+                  "answer": 2,
+                  "explanation": "The biopsychosocial model integrates biological, psychological, and social influences."
+                }
+              ]
+            },
+            {
+              "id": "topic5_4",
+              "name": "Selection of Categories of Psychological Disorders",
+              "questions": [
+                {
+                  "id": "q5_4_1",
+                  "question": "Which disorder involves persistent sadness and loss of interest?",
+                  "options": [
+                    "Bipolar disorder",
+                    "Generalized anxiety disorder",
+                    "Major depressive disorder",
+                    "OCD"
+                  ],
+                  "answer": 2,
+                  "explanation": "Major depressive disorder is characterized by deep sadness and disinterest in activities."
+                },
+                {
+                  "id": "q5_4_2",
+                  "question": "A person with repetitive thoughts and ritual behaviors may be diagnosed with:",
+                  "options": [
+                    "Phobia",
+                    "Panic disorder",
+                    "Schizophrenia",
+                    "Obsessive-compulsive disorder"
+                  ],
+                  "answer": 3,
+                  "explanation": "OCD involves obsessions (thoughts) and compulsions (behaviors)."
+                }
+              ]
+            },
+            {
+              "id": "topic5_5",
+              "name": "Treatment of Psychological Disorders",
+              "questions": [
+                {
+                  "id": "q5_5_1",
+                  "question": "Which therapy focuses on changing self-defeating thoughts?",
+                  "options": [
+                    "Humanistic therapy",
+                    "Psychoanalysis",
+                    "Cognitive therapy",
+                    "Behavioral therapy"
+                  ],
+                  "answer": 2,
+                  "explanation": "Cognitive therapy helps patients challenge and reframe negative thoughts."
+                },
+                {
+                  "id": "q5_5_2",
+                  "question": "Antipsychotic drugs are primarily used to treat:",
+                  "options": [
+                    "Anxiety disorders",
+                    "Depressive disorders",
+                    "Personality disorders",
+                    "Schizophrenia"
+                  ],
+                  "answer": 3,
+                  "explanation": "Antipsychotic medications are commonly prescribed to manage symptoms of schizophrenia."
                 }
               ]
             }
