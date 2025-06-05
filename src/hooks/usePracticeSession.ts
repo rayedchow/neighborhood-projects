@@ -23,6 +23,16 @@ export interface PracticeSessionStats {
   accuracy: number;
 }
 
+export interface UserProfileData {
+  questionsCompleted: number;
+  correctAnswers: number;
+  accuracy: number;
+  lastActivityDate: string;
+  streak: number;
+  growth: number; // Percentage improvement over time
+  recentTopics: string[]; // Array of recent topic IDs
+}
+
 interface PracticeSessionOptions {
   courseId: string;
   unitId?: string;
@@ -66,6 +76,97 @@ export const usePracticeSession = (options: PracticeSessionOptions) => {
     setSelectedOption(index);
   };
   
+  // Helper function to get user profile data from localStorage
+  const getUserProfileData = (userId: string): UserProfileData => {
+    if (typeof window === 'undefined') return {
+      questionsCompleted: 0,
+      correctAnswers: 0,
+      accuracy: 0,
+      lastActivityDate: new Date().toISOString(),
+      streak: 0,
+      growth: 0,
+      recentTopics: []
+    };
+    
+    const storedData = localStorage.getItem(`unitize_profile_${userId}`);
+    if (storedData) {
+      return JSON.parse(storedData);
+    }
+    
+    // Default profile data if none exists
+    return {
+      questionsCompleted: 0,
+      correctAnswers: 0,
+      accuracy: 0,
+      lastActivityDate: new Date().toISOString(),
+      streak: 0,
+      growth: 0,
+      recentTopics: []
+    };
+  };
+  
+  // Helper function to update user profile data in localStorage
+  const updateUserProfileData = (userId: string, isCorrect: boolean, topicId: string) => {
+    const profileData = getUserProfileData(userId);
+    
+    // Calculate days between last activity
+    const lastActivity = new Date(profileData.lastActivityDate);
+    const today = new Date();
+    const daysSinceActivity = Math.floor(
+      (today.getTime() - lastActivity.getTime()) / (1000 * 60 * 60 * 24)
+    );
+    
+    // Update streak based on consecutive days
+    let streak = profileData.streak;
+    if (daysSinceActivity === 0) {
+      // Same day, streak unchanged
+    } else if (daysSinceActivity === 1) {
+      // Consecutive day, streak increases
+      streak += 1;
+    } else {
+      // Streak broken
+      streak = 1;
+    }
+    
+    // Update recent topics (keep most recent 5)
+    let recentTopics = profileData.recentTopics;
+    if (topicId && !recentTopics.includes(topicId)) {
+      recentTopics.unshift(topicId);
+      if (recentTopics.length > 5) {
+        recentTopics = recentTopics.slice(0, 5);
+      }
+    }
+    
+    // Calculate new accuracy
+    const newTotalQuestions = profileData.questionsCompleted + 1;
+    const newCorrectAnswers = profileData.correctAnswers + (isCorrect ? 1 : 0);
+    const newAccuracy = (newCorrectAnswers / newTotalQuestions) * 100;
+    
+    // Calculate growth (improvement in accuracy over time)
+    // Simple approach: compare new accuracy with old accuracy
+    const prevAccuracy = profileData.accuracy;
+    const growth = prevAccuracy > 0 ? 
+      ((newAccuracy - prevAccuracy) / prevAccuracy) * 100 : 
+      0;
+    
+    const updatedProfileData: UserProfileData = {
+      questionsCompleted: newTotalQuestions,
+      correctAnswers: newCorrectAnswers,
+      accuracy: newAccuracy,
+      lastActivityDate: today.toISOString(),
+      streak: streak,
+      growth: growth,
+      recentTopics: recentTopics
+    };
+    
+    // Store updated profile data
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(`unitize_profile_${userId}`, JSON.stringify(updatedProfileData));
+    }
+    
+    return updatedProfileData;
+  };
+
   // Submit the current answer and record progress
   const submitAnswer = async () => {
     if (selectedOption === null || isAnswerSubmitted || !currentQuestion) return;
@@ -84,6 +185,9 @@ export const usePracticeSession = (options: PracticeSessionOptions) => {
     setStats(newStats);
     
     setIsAnswerSubmitted(true);
+    
+    // Update local storage with user profile data
+    updateUserProfileData(userId, isCorrect, currentQuestion.topicId);
     
     // Send progress update to API
     try {
@@ -130,6 +234,11 @@ export const usePracticeSession = (options: PracticeSessionOptions) => {
     setStartTime(new Date());
   };
   
+  // Function to get user profile data for UI display
+  const getProfileData = () => {
+    return getUserProfileData(userId);
+  };
+
   return {
     currentQuestion,
     questions,
@@ -143,6 +252,7 @@ export const usePracticeSession = (options: PracticeSessionOptions) => {
     selectOption,
     submitAnswer,
     nextQuestion,
-    restartSession
+    restartSession,
+    getProfileData
   };
 };

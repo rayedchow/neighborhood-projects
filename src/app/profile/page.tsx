@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
 import { useApi } from '@/hooks/useApi';
 import { Button } from '@/components/ui/Button';
+import { UserProfileData } from '@/hooks/usePracticeSession';
 
 export default function ProfilePage() {
   const [userId, setUserId] = useState<string | null>(null);
   
   const [userData, setUserData] = useState<any>(null);
   const [recommendations, setRecommendations] = useState<any>(null);
+  const [localProfileData, setLocalProfileData] = useState<UserProfileData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
@@ -29,6 +31,22 @@ export default function ProfilePage() {
       return;
     }
   }, []);
+
+  // Load local profile data from localStorage
+  useEffect(() => {
+    if (!userId) return;
+
+    try {
+      if (typeof window !== 'undefined') {
+        const localData = localStorage.getItem(`unitize_profile_${userId}`);
+        if (localData) {
+          setLocalProfileData(JSON.parse(localData));
+        }
+      }
+    } catch (err) {
+      console.error('Error loading local profile data:', err);
+    }
+  }, [userId]);
 
   useEffect(() => {
     async function fetchData() {
@@ -100,26 +118,42 @@ export default function ProfilePage() {
     }
   }, [userId]);
   
-  // Calculate overall stats
+  // Calculate overall stats by merging API data and localStorage data
+  // Prioritize localStorage data since it's more up-to-date
   const calculateOverallStats = () => {
-    if (!userData || !userData.success || !userData.data) {
-      return { totalAttempted: 0, totalCorrect: 0, accuracy: 0 };
+    let apiStats = { totalAttempted: 0, totalCorrect: 0, accuracy: 0 };
+    
+    // Get data from API if available
+    if (userData && userData.success && userData.data) {
+      const { data } = userData;
+      let totalAttempted = 0;
+      let totalCorrect = 0;
+      
+      Object.values(data.courses || {}).forEach((course: any) => {
+        totalAttempted += course.questionsAttempted || 0;
+        totalCorrect += course.questionsCorrect || 0;
+      });
+      
+      apiStats = {
+        totalAttempted,
+        totalCorrect,
+        accuracy: totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0
+      };
     }
     
-    const { data } = userData;
-    let totalAttempted = 0;
-    let totalCorrect = 0;
+    // If we have localStorage data, use it as it's more up-to-date
+    if (localProfileData) {
+      return {
+        totalAttempted: localProfileData.questionsCompleted || apiStats.totalAttempted,
+        totalCorrect: localProfileData.correctAnswers || apiStats.totalCorrect,
+        accuracy: localProfileData.accuracy ? Math.round(localProfileData.accuracy) : apiStats.accuracy,
+        streak: localProfileData.streak || 0,
+        growth: localProfileData.growth ? Math.round(localProfileData.growth * 10) / 10 : 0, // Round to 1 decimal place
+        lastActivityDate: new Date(localProfileData.lastActivityDate)
+      };
+    }
     
-    Object.values(data.courses || {}).forEach((course: any) => {
-      totalAttempted += course.questionsAttempted || 0;
-      totalCorrect += course.questionsCorrect || 0;
-    });
-    
-    return {
-      totalAttempted,
-      totalCorrect,
-      accuracy: totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : 0
-    };
+    return apiStats;
   };
   
   const stats = calculateOverallStats();
@@ -227,6 +261,50 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
+      
+      {/* User Streak & Growth Cards */}
+      {localProfileData && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-4px] overflow-hidden rounded-lg p-6 relative">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-600"></div>
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400">Current Streak</h3>
+                <p className="mt-2 text-4xl font-bold">{localProfileData.streak} {localProfileData.streak === 1 ? 'day' : 'days'}</p>
+                <p className="text-xs text-gray-500 mt-1">Last activity: {new Date(localProfileData.lastActivityDate).toLocaleDateString()}</p>
+              </div>
+              <div className="bg-orange-100 p-3 rounded-full dark:bg-orange-900/30">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-500 dark:text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-4px] overflow-hidden rounded-lg p-6 relative">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-teal-600"></div>
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400">Growth</h3>
+                <p className="mt-2 text-4xl font-bold flex items-center gap-1">
+                  {localProfileData.growth >= 0 ? (
+                    <span className="text-green-500">+{localProfileData.growth.toFixed(1)}%</span>
+                  ) : (
+                    <span className="text-red-500">{localProfileData.growth.toFixed(1)}%</span>
+                  )}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">Improvement over time</p>
+              </div>
+              <div className="bg-green-100 p-3 rounded-full dark:bg-green-900/30">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* Course Progress */}
       <div className="mb-12">
